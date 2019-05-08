@@ -26,7 +26,7 @@ class GamesController < ApplicationController
     search_param = params[:search]
     return if search_param.blank?
 
-    @games = Game.where('name like ?', "%#{search_param[:q]}%")
+    @games = Game.where('lower(name) like lower(?)', "%#{search_param[:q]}%")
   end
 
   def add

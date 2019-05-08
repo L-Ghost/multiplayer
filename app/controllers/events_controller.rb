@@ -34,7 +34,7 @@ class EventsController < ApplicationController
   end
 
   def event_request
-    @user = User.find(params[:id])
+    @user = current_user
     @event = Event.find(params[:id])
     @request = create_event_request
     @request.sent!
@@ -42,35 +42,11 @@ class EventsController < ApplicationController
     redirect_to event_path(@event)
   end
 
-  def accept_request
-    @user = User.find(params[:id])
-    @event = Event.find(params[:id])
-    approved_request
-    EventParticipation.create(event: @event_request.event, user: @user)
-    flash[:notice] = 'Pedido aceito com sucesso!'
-    redirect_to event_path(@event)
-  end
-
-  def decline_request
-    @event = Event.find(params[:id])
-    @event_request = EventRequest.find(params[:id])
-    @event_request.declined!
-    flash[:notice] = 'Pedido recusado com sucesso!'
-    redirect_to event_path(@event)
-  end
-
   def search
     search_param = params[:search]
     return if search_param.blank?
 
-    @events = Event.where('title like ?', "%#{search_param[:q]}%")
-  end
-
-  private
-
-  def approved_request
-    @event_request = EventRequest.find(params[:id])
-    @event_request.approved!
+    @events = Event.where('lower(title) like lower(?)', "%#{search_param[:q]}%")
   end
 
   def create_event_request

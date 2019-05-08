@@ -1,7 +1,7 @@
 FROM ruby:2.6.1
 MAINTAINER Luis Arantes <luis.arantes.sp@gmail.com>
 
-RUN gem install rails
+RUN gem install bundler
 
 ENV APP_HOME /multiplayer
 RUN mkdir $APP_HOME

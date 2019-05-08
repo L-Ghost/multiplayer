@@ -6,6 +6,7 @@ services:
       - "32888:5432"
   web:
     build: .
+    command: rails s -b 0.0.0.0
     volumes:
       - .:/multiplayer
     ports:

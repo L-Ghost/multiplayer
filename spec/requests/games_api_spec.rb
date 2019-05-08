@@ -20,12 +20,12 @@ RSpec.describe 'Games API' do
     end
 
     it 'should delete a game' do
-      create(:game, name: 'God of War', release_year: 2018)
+      game = create(:game, name: 'God of War', release_year: 2018)
 
-      delete '/api/v1/games/1'
+      delete '/api/v1/games/' + game.id.to_s
 
       expect(response.status).to eq 200
-      expect(response.body).to include 'Game God of War deletado com sucesso'
+      expect(response.body).to include "Game #{game.name} deletado com sucesso"
     end
 
     it 'should not delete a game that does not exist' do
