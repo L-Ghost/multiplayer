@@ -1,0 +1,16 @@
+version: '2'
+services:
+  db:
+    image: postgres
+    ports:
+      - "32888:5432"
+  web:
+    build: .
+    volumes:
+      - .:/multiplayer
+    ports:
+      - "32890:3000"
+    links:
+      - db
+    environment:
+      DB_HOST: db

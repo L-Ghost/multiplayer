@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2019_04_11_175812) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -52,8 +55,8 @@ ActiveRecord::Schema.define(version: 2019_04_11_175812) do
   end
 
   create_table "category_games", force: :cascade do |t|
-    t.integer "category_id"
-    t.integer "game_id"
+    t.bigint "category_id"
+    t.bigint "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_category_games_on_category_id"
@@ -62,7 +65,7 @@ ActiveRecord::Schema.define(version: 2019_04_11_175812) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
-    t.integer "state_id"
+    t.bigint "state_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["state_id"], name: "index_cities_on_state_id"
@@ -75,20 +78,20 @@ ActiveRecord::Schema.define(version: 2019_04_11_175812) do
   end
 
   create_table "event_invites", force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "user_id"
+    t.bigint "event_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "invite_respond"
-    t.integer "invitee_id"
+    t.bigint "invitee_id"
     t.index ["event_id"], name: "index_event_invites_on_event_id"
     t.index ["invitee_id"], name: "index_event_invites_on_invitee_id"
     t.index ["user_id"], name: "index_event_invites_on_user_id"
   end
 
   create_table "event_participations", force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "user_id"
+    t.bigint "event_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_event_participations_on_event_id"
@@ -96,12 +99,12 @@ ActiveRecord::Schema.define(version: 2019_04_11_175812) do
   end
 
   create_table "event_requests", force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "user_id"
+    t.bigint "event_id"
+    t.bigint "user_id"
     t.integer "request_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "event_owner_id"
+    t.bigint "event_owner_id"
     t.index ["event_id"], name: "index_event_requests_on_event_id"
     t.index ["event_owner_id"], name: "index_event_requests_on_event_owner_id"
     t.index ["user_id"], name: "index_event_requests_on_user_id"
@@ -109,8 +112,8 @@ ActiveRecord::Schema.define(version: 2019_04_11_175812) do
 
   create_table "events", force: :cascade do |t|
     t.string "title"
-    t.integer "user_id"
-    t.integer "game_platform_id"
+    t.bigint "user_id"
+    t.bigint "game_platform_id"
     t.text "description"
     t.date "event_date"
     t.integer "user_limit"
@@ -123,8 +126,8 @@ ActiveRecord::Schema.define(version: 2019_04_11_175812) do
   end
 
   create_table "game_platforms", force: :cascade do |t|
-    t.integer "game_id"
-    t.integer "platform_id"
+    t.bigint "game_id"
+    t.bigint "platform_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_game_platforms_on_game_id"
@@ -132,8 +135,8 @@ ActiveRecord::Schema.define(version: 2019_04_11_175812) do
   end
 
   create_table "game_users", force: :cascade do |t|
-    t.integer "game_id"
-    t.integer "user_id"
+    t.bigint "game_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_game_users_on_game_id"
@@ -151,7 +154,7 @@ ActiveRecord::Schema.define(version: 2019_04_11_175812) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "company_id"
+    t.bigint "company_id"
     t.index ["company_id"], name: "index_platforms_on_company_id"
   end
 
@@ -170,8 +173,8 @@ ActiveRecord::Schema.define(version: 2019_04_11_175812) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "city_id"
-    t.integer "state_id"
+    t.bigint "city_id"
+    t.bigint "state_id"
     t.string "nickname"
     t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -179,4 +182,23 @@ ActiveRecord::Schema.define(version: 2019_04_11_175812) do
     t.index ["state_id"], name: "index_users_on_state_id"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "category_games", "categories"
+  add_foreign_key "category_games", "games"
+  add_foreign_key "cities", "states"
+  add_foreign_key "event_invites", "events"
+  add_foreign_key "event_invites", "users"
+  add_foreign_key "event_participations", "events"
+  add_foreign_key "event_participations", "users"
+  add_foreign_key "event_requests", "events"
+  add_foreign_key "event_requests", "users"
+  add_foreign_key "events", "game_platforms"
+  add_foreign_key "events", "users"
+  add_foreign_key "game_platforms", "games"
+  add_foreign_key "game_platforms", "platforms"
+  add_foreign_key "game_users", "games"
+  add_foreign_key "game_users", "users"
+  add_foreign_key "platforms", "companies"
+  add_foreign_key "users", "cities"
+  add_foreign_key "users", "states"
 end
