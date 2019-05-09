@@ -26,7 +26,11 @@ class User < ApplicationRecord
   validates :nickname, presence: true, on: :update
   validates :nickname, uniqueness: true, on: :update
 
+  def future_events
+    events.where(['event_date >= ?', Time.zone.now])
+  end
+
   def event_options
-    events.map { |e| [e.title, e.id] }
+    future_events.map { |e| [e.title, e.id] }
   end
 end
