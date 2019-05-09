@@ -29,4 +29,14 @@ RSpec.describe Event, type: :model do
       expect(event.max_participants_info).to eq('Máximo Participantes: 4')
     end
   end
+
+  describe '#attendance_info' do
+    it 'should show comparison of participants and user limit' do
+      event.user_limit = 4
+      create(:event_participation, event: event)
+      create(:event_participation, event: event)
+
+      expect(event.attendance_info).to eq('Participantes: 2/4')
+    end
+  end
 end

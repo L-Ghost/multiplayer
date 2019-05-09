@@ -6,6 +6,7 @@
       <h3><%= t('upcoming.events') %></h3>
 
       <% if @events.any? %>
+
         <div class="row">
           <% @events.each do |event| %>
             <div class="card ml-3 mt-3" style="width: 20rem;">
@@ -17,7 +18,7 @@
               <div class="card-body">
                 <h4 class="card-title"><%= event.title %></h4>
                 <h6 class="card-subtitle mb-2 text-muted"><%= event.event_type %></h6>
-                <% if event.event_participations.count == event.user_limit %>
+                <% if event.total_participants == event.user_limit %>
                   <%= image_tag('/assets/events/full_attendance.png', title: t(:full_attendance)) %>
                 <% end %>
                 <p><%= event.description.truncate(100) %>...</p>
@@ -25,14 +26,16 @@
                   <%= "Criado por: #{event.user.nickname}" %>
                 </p>
                 <p>
-                  <%= "Participantes: #{event.event_participations.count}/#{event.user_limit}" %>
+                  <%= event.attendance_info %>
                 </p>
                 <%= link_to 'Ver detalhes', event %>
               </div>
             </div>
           <% end %>
         </div>
+
       <% else %>
+
         <br>
         <p>
         <%= t('no_upcoming_events') %>
@@ -41,6 +44,7 @@
         <%= link_to t('create.amused_event'), new_event_path %>
         </p>
         <br>
+
       <% end %>
     </div>
 

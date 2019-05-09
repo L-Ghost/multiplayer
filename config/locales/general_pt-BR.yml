@@ -6,6 +6,9 @@ pt-BR:
   game:
     added: 'Este jogo foi vinculado ao seu perfil'
     my: 'Meus Jogos'
+  participant:
+    one: 'Participante'
+    other: 'Participantes'
   create:
     event: 'Quero criar um novo Evento'
     amused_event: 'Movimente sua comunidade! Crie um Evento!'

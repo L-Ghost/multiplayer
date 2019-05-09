@@ -16,4 +16,8 @@ class Event < ApplicationRecord
   def max_participants_info
     "#{I18n.t('max.participants')}: #{user_limit}"
   end
+
+  def attendance_info
+    "#{I18n.t('participant.other')}: #{total_participants}/#{user_limit}"
+  end
 end
