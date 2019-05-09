@@ -68,6 +68,9 @@ pt-BR:
   total:
     categories: 'Total de Categorias'
     platforms: 'Total de Consoles'
+    participants: 'Total Participantes'
+  max:
+    participants: 'Máximo Participantes'
   form:
     new:
       event:

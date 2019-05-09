@@ -8,8 +8,8 @@
 
 <p>Data: <%= l @event.event_date %></p>
 <p>Local: <%= @event.event_location %></p>
-<p><%= "Total Participantes: #{@event.event_participations.count}" %></p>
-<p><%= "Máximo Participantes: #{@event.user_limit}" %></p>
+<p><%= @event.total_participants_info %></p>
+<p><%= @event.max_participants_info %></p>
 
 <% if current_user == @event.user %>
   <h2>Pedidos de participação</h2>
@@ -21,7 +21,7 @@
     </p>
   <% end %>
 <% elsif !@event_requests.any? %>
-  <% if (@event.event_participations.count < @event.user_limit) %>
+  <% if (@event.total_participants < @event.user_limit) %>
     <p>
       <%= link_to 'Pedir para participar deste evento', event_request_event_path, method: :post %>
     </p>
