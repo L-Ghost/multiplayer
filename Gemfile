@@ -8,6 +8,8 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 # Simple Form
 gem 'simple_form'
+# Decorator
+gem 'active_decorator', '~> 1.2.0'
 # Devise
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
