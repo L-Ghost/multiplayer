@@ -8,16 +8,4 @@ class Event < ApplicationRecord
   def total_participants
     event_participations.count
   end
-
-  def total_participants_info
-    "#{I18n.t('total.participants')}: #{total_participants}"
-  end
-
-  def max_participants_info
-    "#{I18n.t('max.participants')}: #{user_limit}"
-  end
-
-  def attendance_info
-    "#{I18n.t('participant.other')}: #{total_participants}/#{user_limit}"
-  end
 end

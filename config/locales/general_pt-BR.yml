@@ -2,10 +2,13 @@ pt-BR:
   welcome_message: 'Bem-vindo ao Multiplayer'
   authenticated_as: 'Logado como'
   authenticated_as_admin: 'Logado como Admin'
-  full_attendance: Todas as vagas estão preenchidas
+  date_text: 'Data'
+  location_text: 'Local'
   game:
     added: 'Este jogo foi vinculado ao seu perfil'
     my: 'Meus Jogos'
+  event:
+    full_attendance: 'Todas as vagas estão preenchidas'
   participant:
     one: 'Participante'
     other: 'Participantes'

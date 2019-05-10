@@ -19,7 +19,7 @@
                 <h4 class="card-title"><%= event.title %></h4>
                 <h6 class="card-subtitle mb-2 text-muted"><%= event.event_type %></h6>
                 <% if event.total_participants == event.user_limit %>
-                  <%= image_tag('/assets/events/full_attendance.png', title: t(:full_attendance)) %>
+                  <%= image_tag('/assets/events/full_attendance.png', title: t('event.full_attendance')) %>
                 <% end %>
                 <p><%= event.description.truncate(100) %>...</p>
                 <p>
