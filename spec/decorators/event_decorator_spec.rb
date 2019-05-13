@@ -1,13 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe EventDecorator do
-  let(:event) { ActiveDecorator::Decorator.instance.decorate(create(:event)) }
-  subject { event }
-  it { should be_a Event }
+  let(:event) { create(:event).decorate }
 
   describe '#date_info' do
     it 'shows info about event date' do
-      dt = Time.new + 4.days
+      dt = Time.zone.now + 4.days
       event.event_date = dt
 
       expect(event.date_info).to eq("Data: #{dt.strftime('%d/%m/%Y')}")
@@ -48,6 +46,13 @@ RSpec.describe EventDecorator do
       create(:event_participation, event: event)
 
       expect(event.attendance_info).to eq('Participantes: 2/4')
+    end
+  end
+
+  describe '#new_request' do
+    it 'shows link to creation of new request' do
+      regex = %r{href=\"\/events\/#{event.id}\/event_request\"}
+      expect(event.new_request).to match(regex)
     end
   end
 end

@@ -4,10 +4,13 @@ pt-BR:
   authenticated_as_admin: 'Logado como Admin'
   date_text: 'Data'
   location_text: 'Local'
+  accept: 'Aceitar'
+  decline: 'Recusar'
   game:
     added: 'Este jogo foi vinculado ao seu perfil'
     my: 'Meus Jogos'
   event:
+    new_request: 'Pedir para participar deste evento'
     full_attendance: 'Todas as vagas estão preenchidas'
   participant:
     one: 'Participante'

@@ -14,12 +14,12 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
-    @event_requests = EventRequest.where(user: current_user)
+    @event = Event.find(params[:id]).decorate
+    @event_requests = EventRequest.where(user: current_user).decorate
     @my_requests = EventRequest.where(
       event_owner: current_user,
-      request_status: nil
-    )
+      request_status: :sent
+    ).decorate
   end
 
   def invite
@@ -34,7 +34,6 @@ class EventsController < ApplicationController
   end
 
   def event_request
-    @user = current_user
     @event = Event.find(params[:id])
     @request = create_event_request
     @request.sent!
@@ -50,7 +49,9 @@ class EventsController < ApplicationController
   end
 
   def create_event_request
-    EventRequest.create(event: @event, user: current_user, event_owner: @user)
+    EventRequest.create(
+      event: @event, user: current_user, event_owner: @event.user
+    )
   end
 
   def event_params

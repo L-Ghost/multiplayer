@@ -1,13 +1,17 @@
 require 'rails_helper'
 
-feature 'User view event solicitations' do
+feature 'User answers event requests' do
   scenario 'successfully' do
     user1 = create(:user)
     user2 = create(:user)
     user3 = create(:user)
     event = create(:event, user: user1)
-    event_request1 = create(:event_request, user: user2, event_owner: user1)
-    event_request2 = create(:event_request, user: user3, event_owner: user1)
+    event_request1 = create(
+      :event_request, event: event, user: user2, event_owner: user1
+    )
+    event_request2 = create(
+      :event_request, event: event, user: user3, event_owner: user1
+    )
 
     login_as user1, scope: :user
     visit event_path(event)
@@ -18,7 +22,7 @@ feature 'User view event solicitations' do
     expect(page).to have_link('Recusar', count: 2)
   end
 
-  scenario 'and accepts solicitation' do
+  scenario 'and accepts request' do
     user1 = create(:user)
     user2 = create(:user)
     event = create(:event, user: user1)
@@ -36,7 +40,7 @@ feature 'User view event solicitations' do
     expect(page).not_to have_link('Aceitar', count: 2)
   end
 
-  scenario 'and declines solicitation' do
+  scenario 'and declines request' do
     user1 = create(:user)
     user2 = create(:user)
     event = create(:event, user: user1)

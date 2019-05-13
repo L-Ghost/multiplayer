@@ -16,14 +16,14 @@
   <% @my_requests.each do |r| %>
     <p>
       <%= r.user.name %>
-      <%= link_to 'Aceitar', accept_event_request_path(r), method: :put %>
-      <%= link_to 'Recusar', decline_event_request_path(r), method: :put %>
+      <%= r.accept_link %>
+      <%= r.decline_link %>
     </p>
   <% end %>
 <% elsif !@event_requests.any? %>
   <% if (@event.total_participants < @event.user_limit) %>
     <p>
-      <%= link_to 'Pedir para participar deste evento', event_request_event_path, method: :post %>
+      <%= @event.new_request %>
     </p>
   <% end %>
 <% end %>
