@@ -12,29 +12,12 @@
 <p><%= @event.max_participants_info %></p>
 
 <% if current_user == @event.user %>
-  <h2>Pedidos de participação</h2>
-  <% @my_requests.each do |r| %>
-    <p>
-      <%= r.user.name %>
-      <%= r.accept_link %>
-      <%= r.decline_link %>
-    </p>
+  <%= render partial: 'participation_requests', locals: { requests: @received_requests } %>
+  <%= render partial: 'participation_invite_form', locals: { event: @event } %>
+<% else %>
+  <% if !current_user.sent_request_to_event?(@event) %>
+    <%= render partial: 'participation_request_form', locals: { event: @event } %>
+  <% else %>
+    <h4><%= t('event.sent_request') %></h4>
   <% end %>
-<% elsif !@event_requests.any? %>
-  <% if (@event.total_participants < @event.user_limit) %>
-    <p>
-      <%= @event.new_request %>
-    </p>
-  <% end %>
-<% end %>
-
-<% if @event.user == current_user %>
-  <div>
-    <h3><%= t('show.event.invite_users') %></h3>
-    <%= simple_form_for @event, url: invite_event_path, method: :post do |f| %>
-      <%= label_tag :q, t('form.new.invite.q') %>
-      <%= text_field_tag :q %>
-      <%= f.submit t('form.new.invite.submit') %>
-    <% end %>
-  </div>
 <% end %>

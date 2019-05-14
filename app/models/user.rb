@@ -19,6 +19,11 @@ class User < ApplicationRecord
            foreign_key: :invitee_id,
            dependent: :destroy,
            inverse_of: :invitee
+  has_many :sent_requests,
+           class_name: 'EventRequest',
+           foreign_key: :user_id,
+           dependent: :destroy,
+           inverse_of: :user
 
   has_one_attached :avatar
 
@@ -32,5 +37,9 @@ class User < ApplicationRecord
 
   def event_options
     future_events.map { |e| [e.title, e.id] }
+  end
+
+  def sent_request_to_event?(event)
+    sent_requests.where(event: event).any?
   end
 end

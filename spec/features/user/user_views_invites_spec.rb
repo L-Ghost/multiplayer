@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User view invites' do
+feature 'User views invites' do
   scenario 'successfully' do
     user = create(:user)
     event1 = create(:event)

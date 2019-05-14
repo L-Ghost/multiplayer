@@ -1,0 +1,8 @@
+<h2><%= t('participation.requests') %></h2>
+<% requests.each do |r| %>
+  <p>
+    <%= r.user.name %>
+    <%= r.accept_link %>
+    <%= r.decline_link %>
+  </p>
+<% end %>

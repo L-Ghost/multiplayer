@@ -1,0 +1,8 @@
+<div>
+  <h3><%= t('show.event.invite_users') %></h3>
+  <%= simple_form_for event, url: invite_event_path, method: :post do |f| %>
+    <%= label_tag :q, t('form.new.invite.q') %>
+    <%= text_field_tag :q %>
+    <%= f.submit t('form.new.invite.submit') %>
+  <% end %>
+</div>

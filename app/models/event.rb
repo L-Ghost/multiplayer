@@ -4,8 +4,13 @@ class Event < ApplicationRecord
   belongs_to :user
   belongs_to :game_platform
   has_many :event_participations, dependent: :destroy
+  has_many :event_requests, dependent: :destroy
 
   def total_participants
     event_participations.count
+  end
+
+  def full?
+    total_participants == user_limit
   end
 end

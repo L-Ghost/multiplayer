@@ -12,9 +12,12 @@ pt-BR:
   event:
     new_request: 'Pedir para participar deste evento'
     full_attendance: 'Todas as vagas estão preenchidas'
+    sent_request: 'Você já solicitou participar deste evento'
   participant:
     one: 'Participante'
     other: 'Participantes'
+  participation:
+    requests: 'Pedidos de participação'
   create:
     event: 'Quero criar um novo Evento'
     amused_event: 'Movimente sua comunidade! Crie um Evento!'

@@ -15,8 +15,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id]).decorate
-    @event_requests = EventRequest.where(user: current_user).decorate
-    @my_requests = EventRequest.where(
+    @received_requests = EventRequest.where(
       event_owner: current_user,
       request_status: :sent
     ).decorate
