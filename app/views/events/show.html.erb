@@ -15,9 +15,9 @@
   <%= render partial: 'participation_requests', locals: { requests: @received_requests } %>
   <%= render partial: 'participation_invite_form', locals: { event: @event } %>
 <% else %>
-  <% if !current_user.sent_request_to_event?(@event) %>
-    <%= render partial: 'participation_request_form', locals: { event: @event } %>
-  <% else %>
+  <% if current_user.sent_request_to_event?(@event) %>
     <h4><%= t('event.sent_request') %></h4>
+  <% else %>
+    <%= render partial: 'participation_request_form', locals: { event: @event } %>
   <% end %>
 <% end %>

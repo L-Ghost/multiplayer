@@ -10,9 +10,16 @@ pt-BR:
     added: 'Este jogo foi vinculado ao seu perfil'
     my: 'Meus Jogos'
   event:
+    details: 'Detalhes do Evento'
     new_request: 'Pedir para participar deste evento'
+    new_request_sent: 'Seu evento tem uma nova solicitação'
+    user_request_info: 'O usuário %{user} deseja participar de seu Evento'
     full_attendance: 'Todas as vagas estão preenchidas'
     sent_request: 'Você já solicitou participar deste evento'
+    sent_subject: 'Você solicitou participar do Evento'
+    await_response: 'Aguarde resposta do administrador do Evento'
+    access_site: 'Acesse nosso site para responder sua solicitação'
+    sent_mailer_message: 'Sua solicitação foi enviada ao administrador do Evento'
   participant:
     one: 'Participante'
     other: 'Participantes'

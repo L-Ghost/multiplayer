@@ -1,6 +1,7 @@
 class EventRequestDecorator < ApplicationDecorator
   include Draper::LazyHelpers
   delegate_all
+  decorates_association :event
 
   def accept_link
     link_to I18n.t(:accept), accept_event_request_path(object), method: :put
@@ -8,5 +9,13 @@ class EventRequestDecorator < ApplicationDecorator
 
   def decline_link
     link_to I18n.t(:decline), decline_event_request_path(object), method: :put
+  end
+
+  def sent_subject
+    "#{I18n.t('event.sent_subject')}: #{event.title}"
+  end
+
+  def user_request_info
+    I18n.t('event.user_request_info', user: user.nickname)
   end
 end
