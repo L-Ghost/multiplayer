@@ -36,6 +36,8 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @request = create_event_request
     @request.sent!
+    @request.sent_request
+    @request.received_request
     flash[:notice] = 'Pedido de participação enviado com sucesso!'
     redirect_to event_path(@event)
   end
