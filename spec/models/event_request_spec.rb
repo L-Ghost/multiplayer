@@ -11,4 +11,15 @@ RSpec.describe EventRequest, type: :model do
       expect(SendNewSentRequestJob).to have_received(:perform_later)
     end
   end
+
+  describe '#received_request' do
+    it 'enqueues received request email' do
+      event_request = create(:event_request)
+      allow(SendNewReceivedRequestJob).to receive(:perform_later)
+
+      event_request.received_request
+
+      expect(SendNewReceivedRequestJob).to have_received(:perform_later)
+    end
+  end
 end

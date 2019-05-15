@@ -8,4 +8,8 @@ class EventRequest < ApplicationRecord
   def sent_request
     SendNewSentRequestJob.perform_later(id)
   end
+
+  def received_request
+    SendNewReceivedRequestJob.perform_later(id)
+  end
 end
