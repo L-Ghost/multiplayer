@@ -32,3 +32,5 @@
 
 # simplecov
 /coverage/*
+
+.env

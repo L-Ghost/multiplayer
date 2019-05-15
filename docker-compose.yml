@@ -4,6 +4,20 @@ services:
     image: postgres
     ports:
       - "32888:5432"
+  redis:
+    image: redis
+    ports:
+      - "32889:6379"
+  sidekiq:
+    build: .
+    volumes:
+      - .:/multiplayer
+    links:
+      - db
+      - redis
+    env_file:
+      - .env
+    command: bundle exec sidekiq
   web:
     build: .
     command: rails s -b 0.0.0.0
@@ -13,5 +27,7 @@ services:
       - "32890:3000"
     links:
       - db
-    environment:
-      DB_HOST: db
+      - redis
+      - sidekiq
+    env_file:
+      - .env
