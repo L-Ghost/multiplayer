@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe SendNewReceivedRequestJob, type: :job do
+  let(:event_request) { create(:event_request) }
   let(:message_chain) { %i[received_request deliver_now] }
 
   describe '#perform' do
     it 'calls on the EventRequestMailer' do
-      event_request = create(:event_request)
       allow(EventRequest).to receive(:find).and_return(event_request)
       allow(EventRequestMailer).to receive_message_chain(message_chain)
 
@@ -17,7 +17,6 @@ RSpec.describe SendNewReceivedRequestJob, type: :job do
 
   describe '.perform_later' do
     it 'adds the job to the queue' do
-      event_request = create(:event_request)
       allow(EventRequestMailer).to receive_message_chain(message_chain)
 
       described_class.perform_later(event_request.id)
