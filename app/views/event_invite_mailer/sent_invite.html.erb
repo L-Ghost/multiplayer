@@ -1,0 +1,6 @@
+<h1><%= @event_invite.event.title %></h1>
+
+<p><%= t('event.invite.sent.mailer_message') %></p>
+<p><%= t('event.invite.await_response') %></p>
+
+<%= render partial: 'events/details', locals: { event: @event_invite.event } %>

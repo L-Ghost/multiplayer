@@ -12,7 +12,7 @@ class EventRequestDecorator < ApplicationDecorator
   end
 
   def sent_subject
-    "#{I18n.t('event.sent_subject')}: #{event.title}"
+    "#{I18n.t('event.request.sent.subject')}: #{event.title}"
   end
 
   def user_request_info

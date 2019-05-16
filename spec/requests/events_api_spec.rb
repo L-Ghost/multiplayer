@@ -23,14 +23,15 @@ RSpec.describe 'Events API' do
       user = create(:user, nickname: 'Rockman2000')
       title = 'Noite Mega Man Legends'
       description = 'Noite para terminar todos os jogos da saga'
+      dt = Time.zone.now + 3.days
       location = 'Avenida Consolação, 2000'
       platform = create(:platform, name: 'Playstation')
       game = create(:game, name: 'Mega Man Legends')
       game_platform = create(:game_platform, game: game, platform: platform)
       event = create(
         :event,
-        user: user, game_platform: game_platform,
-        title: title, description: description, event_location: location
+        user: user, game_platform: game_platform, title: title,
+        description: description, event_date: dt, event_location: location
       )
 
       get '/api/v1/events/' + event.id.to_s
@@ -39,6 +40,7 @@ RSpec.describe 'Events API' do
       expect(response.body).to include(title)
       expect(response.body).to include(description)
       expect(response.body).to include(user.nickname)
+      expect(response.body).to include(dt.strftime('%d/%m/%Y'))
       expect(response.body).to include(location)
       expect(response.body).to include(game.name)
       expect(response.body).to include(platform.name)

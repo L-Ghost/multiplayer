@@ -3,7 +3,4 @@
 <p><%= @event_request.user_request_info %></p>
 <p><%= t('event.access_site') %></p>
 
-<h3><%= t('event.details') %></h3>
-
-<p><%= @event_request.event.date_info %></p>
-<p><%= @event_request.event.location_info %></p>
+<%= render partial: 'events/details', locals: { event: @event_request.event } %>

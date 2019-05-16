@@ -2,6 +2,10 @@ class EventSerializer < ActiveModel::Serializer
   attributes :id, :title, :description, :event_date,
              :event_location, :owner, :game, :platform
 
+  def event_date
+    I18n.l(object.event_date)
+  end
+
   def owner
     { owner_id: object.user.id, owner_name: object.user.nickname }
   end

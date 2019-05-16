@@ -1,0 +1,6 @@
+<h1><%= @event_invite.event.title %></h1>
+
+<p><%= @event_invite.received_invite_info %></p>
+<p><%= t('event.access_site') %></p>
+
+<%= render partial: 'events/details', locals: { event: @event_invite.event } %>

@@ -1,9 +1,6 @@
 <h1><%= @event_request.event.title %></h1>
 
-<p><%= t('event.sent_mailer_message') %></p>
+<p><%= t('event.request.sent.mailer_message') %></p>
 <p><%= t('event.await_response') %></p>
 
-<h3><%= t('event.details') %></h3>
-
-<p><%= @event_request.event.date_info %></p>
-<p><%= @event_request.event.location_info %></p>
+<%= render partial: 'events/details', locals: { event: @event_request.event } %>
