@@ -11,6 +11,8 @@ gem 'simple_form'
 # Decorator
 gem 'draper', '~> 3.0.0'
 # gem 'active_decorator', '~> 1.2.0'
+# Serializer
+gem 'active_model_serializers'
 # Devise
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -57,10 +59,10 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara'
+  gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'rspec-rails'
   gem 'rubocop', require: false
-  gem 'dotenv-rails'
 end
 
 group :development do

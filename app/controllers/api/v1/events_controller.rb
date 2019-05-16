@@ -6,7 +6,8 @@ class Api::V1::EventsController < Api::V1::ApplicationController
 
   def show
     @event = Event.find_by(id: params[:id])
-    render status: :ok, json: @event if @event
+    return render status: :ok, json: @event if @event
+
     render status: :not_found, json: 'Não existe um evento com o ID informado'
   end
 end
