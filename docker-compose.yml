@@ -3,11 +3,11 @@ services:
   db:
     image: postgres
     ports:
-      - "32888:5432"
+      - "0:5432"
   redis:
     image: redis
     ports:
-      - "32889:6379"
+      - "0:6379"
   sidekiq:
     build: .
     volumes:
@@ -28,6 +28,5 @@ services:
     links:
       - db
       - redis
-      - sidekiq
     env_file:
       - .env

@@ -33,7 +33,6 @@ gem 'mini_racer', platforms: :ruby
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'sidekiq-unique-jobs'
-gem 'sinatra', require: nil
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
