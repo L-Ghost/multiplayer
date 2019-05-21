@@ -11,8 +11,10 @@ pt-BR:
     my: 'Meus Jogos'
   event:
     invite:
+      already_sent: 'Este usuário já foi convidado anteriormente'
       await_response: 'Aguarde a resposta do usuário'
       sent:
+        nickname: 'Convite enviado para o usuário %{nickname}'
         subject: 'Você convidou o usuário %{user} para o evento %{event}'
         mailer_message: 'Foi enviado um email ao usuário com mais detalhes sobre o evento'
       received:
@@ -79,6 +81,7 @@ pt-BR:
     found:
       games: 'Nenhum jogo encontrado'
       users: 'Nenhum usuário encontrado'
+      user_email: 'Não foi encontrado um usuário com este email'
       events: 'Nenhum evento encontrado'
   add:
     to_my_profile: 'Adicionar ao meu Perfil'

@@ -14,11 +14,9 @@ Rails.application.routes.draw do
   resources :companies, only: %i[new create]
   resources :events, only: %i[index show new create] do
     collection {get :search}
-
-    member do
-      post :invite
-    end
   end
+
+  resources :event_invites, only: [:create]
 
   resources :event_requests, only: [:create] do
     member do

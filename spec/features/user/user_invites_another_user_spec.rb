@@ -18,7 +18,7 @@ feature 'User invites another user' do
     expect(EventInvite.count).to eq(1)
   end
 
-  scenario 'to an event using email' do
+  scenario 'to an event using nickname' do
     user = create(:user)
     another_user = create(:user)
     event = create(:event, user: user)
