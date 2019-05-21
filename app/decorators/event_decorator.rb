@@ -26,7 +26,7 @@ class EventDecorator < ApplicationDecorator
   def new_request
     link_to(
       I18n.t('event.new_request'),
-      event_request_event_path(object),
+      event_requests_path(event_id: id),
       method: :post
     )
   end

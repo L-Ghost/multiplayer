@@ -32,27 +32,11 @@ class EventsController < ApplicationController
     redirect_to @event
   end
 
-  def event_request
-    @event = Event.find(params[:id])
-    @request = create_event_request
-    @request.sent!
-    @request.sent_request
-    @request.received_request
-    flash[:notice] = 'Pedido de participação enviado com sucesso!'
-    redirect_to event_path(@event)
-  end
-
   def search
     search_param = params[:search]
     return if search_param.blank?
 
     @events = Event.where('lower(title) like lower(?)', "%#{search_param[:q]}%")
-  end
-
-  def create_event_request
-    EventRequest.create(
-      event: @event, user: current_user, event_owner: @event.user
-    )
   end
 
   def event_params
@@ -83,10 +67,12 @@ class EventsController < ApplicationController
   end
 
   def create_event_invite
-    EventInvite.create(
+    @event_invite = EventInvite.create(
       event: @event,
       user: current_user,
       invitee: @invited_user
     )
+    @event_invite.sent_invite
+    @event_invite.received_invite
   end
 end

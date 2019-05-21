@@ -51,8 +51,14 @@ RSpec.describe EventDecorator do
 
   describe '#new_request' do
     it 'shows link to creation of new request' do
-      regex = %r{href=\"\/events\/#{event.id}\/event_request\"}
+      regex = %r{href=\"\/event_requests\?event_id\=#{event.id}\"}
       expect(event.new_request).to match(regex)
+    end
+
+    it 'shows event id equals to current event' do
+      id = event.id + 1
+      regex = %r{href=\"\/event_requests\?event_id\=#{id}\"}
+      expect(event.new_request).not_to match(regex)
     end
   end
 end

@@ -1,26 +1,46 @@
 class EventRequestsController < ApplicationController
+  def create
+    @event = Event.find(params[:event_id])
+    create_event_request
+    send_emails
+    flash[:notice] = I18n.t('event.request.sent.successful')
+    redirect_to event_path(@event)
+  end
+
   def accept
-    approved_request
+    approve_request
     @user = current_user
     EventParticipation.create(event: @event_request.event, user: @user)
-    flash[:notice] = 'Pedido aceito com sucesso!'
+    flash[:notice] = I18n.t('event.request.accepted')
     redirect_to(@event_request.event)
   end
 
   def decline
-    declined_request
-    flash[:notice] = 'Pedido recusado!'
+    decline_request
+    flash[:notice] = I18n.t('event.request.declined')
     redirect_to(@event_request.event)
   end
 
   private
 
-  def approved_request
+  def create_event_request
+    @event_request = EventRequest.create(
+      event: @event, user: current_user, event_owner: @event.user
+    )
+    @event_request.sent!
+  end
+
+  def send_emails
+    @event_request.sent_request
+    @event_request.received_request
+  end
+
+  def approve_request
     @event_request = EventRequest.find(params[:id])
     @event_request.approved!
   end
 
-  def declined_request
+  def decline_request
     @event_request = EventRequest.find(params[:id])
     @event_request.declined!
   end

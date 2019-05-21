@@ -19,7 +19,10 @@ pt-BR:
         subject: 'Você foi convidado para o evento %{event}'
         mailer_message: 'O usuário %{user} te convidou para participar do evento %{event}'
     request:
+      accepted: 'Pedido aceito com sucesso!'
+      declined: 'Pedido recusado!'
       sent:
+        successful: 'Pedido de participação enviado com sucesso!'
         subject: 'Você solicitou participar do Evento'
         mailer_message: 'Sua solicitação foi enviada ao administrador do Evento'
     details: 'Detalhes do Evento'

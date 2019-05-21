@@ -17,11 +17,10 @@ Rails.application.routes.draw do
 
     member do
       post :invite
-      post :event_request
     end
   end
 
-  resources :event_requests, only: [] do
+  resources :event_requests, only: [:create] do
     member do
       put :accept
       put :decline
