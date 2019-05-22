@@ -26,9 +26,7 @@ feature 'User answers event requests' do
     user1 = create(:user)
     user2 = create(:user)
     event = create(:event, user: user1)
-    event_request = create(
-      :event_request, event: event, user: user2, event_owner: user1
-    )
+    create(:event_request, event: event, user: user2, event_owner: user1)
 
     login_as user1, scope: :user
     visit event_path(event)
@@ -36,17 +34,15 @@ feature 'User answers event requests' do
 
     expect(current_path).to eq event_path(event)
     expect(page).to have_content('Pedido aceito com sucesso!')
-    expect(page).not_to have_content(event_request.user.name)
-    expect(page).not_to have_link('Aceitar', count: 2)
+    expect(page).to have_content(user2.nickname)
+    expect(page).not_to have_link('Aceitar')
   end
 
   scenario 'and declines request' do
     user1 = create(:user)
     user2 = create(:user)
     event = create(:event, user: user1)
-    event_request = create(
-      :event_request, event: event, user: user2, event_owner: user1
-    )
+    create(:event_request, event: event, user: user2, event_owner: user1)
 
     login_as user1, scope: :user
     visit event_path(event)
@@ -54,7 +50,7 @@ feature 'User answers event requests' do
 
     expect(current_path).to eq event_path(event)
     expect(page).to have_content('Pedido recusado!')
-    expect(page).not_to have_content(event_request.user.name)
-    expect(page).not_to have_link('Recusar', count: 2)
+    expect(page).not_to have_content(user2.nickname)
+    expect(page).not_to have_link('Recusar')
   end
 end

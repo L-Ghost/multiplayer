@@ -1,8 +1,29 @@
 require 'rails_helper'
 
 feature 'Event owner views event' do
+  let(:user) { create(:user) }
+
+  scenario 'and sees requests' do
+    user2 = create(:user)
+    user3 = create(:user)
+    event = create(:event, user: user)
+    event_request1 = create(
+      :event_request, event: event, user: user2, event_owner: user
+    )
+    event_request2 = create(
+      :event_request, event: event, user: user3, event_owner: user
+    )
+
+    login_as(user, scope: :user)
+    visit event_path(event)
+
+    expect(page).to have_content(event_request1.user.name)
+    expect(page).to have_content(event_request2.user.name)
+    expect(page).to have_link('Aceitar', count: 2)
+    expect(page).to have_link('Recusar', count: 2)
+  end
+
   scenario 'and sees event participants' do
-    user = create(:user)
     event = create(:event, user: user)
     ep1 = create(:event_participation, event: event, user: user)
     ep2 = create(:event_participation, event: event)
@@ -19,7 +40,6 @@ feature 'Event owner views event' do
   end
 
   scenario 'and there are no participation requests' do
-    user = create(:user)
     event = create(:event, user: user)
 
     login_as(user, scope: :user)
