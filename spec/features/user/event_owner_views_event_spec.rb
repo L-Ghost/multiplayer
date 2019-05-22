@@ -7,12 +7,8 @@ feature 'Event owner views event' do
     user2 = create(:user)
     user3 = create(:user)
     event = create(:event, user: user)
-    event_request1 = create(
-      :event_request, event: event, user: user2, event_owner: user
-    )
-    event_request2 = create(
-      :event_request, event: event, user: user3, event_owner: user
-    )
+    event_request1 = create(:event_request, event: event, user: user2)
+    event_request2 = create(:event_request, event: event, user: user3)
 
     login_as(user, scope: :user)
     visit event_path(event)

@@ -22,9 +22,7 @@ class EventRequestsController < ApplicationController
   private
 
   def create_event_request
-    @event_request = EventRequest.create(
-      event: @event, user: current_user, event_owner: @event.user
-    )
+    @event_request = EventRequest.create(event: @event, user: current_user)
     @event_request.sent!
   end
 

@@ -3,7 +3,7 @@ class EventRequest < ApplicationRecord
 
   belongs_to :event
   belongs_to :user
-  belongs_to :event_owner, class_name: 'User'
+  has_one :event_owner, through: :event, source: :user
 
   def sent_request
     SendNewSentRequestJob.perform_later(id)

@@ -69,9 +69,8 @@ feature 'User views invites' do
 
   scenario 'and accepts invite' do
     user = create(:user)
-    event_owner = create(:user)
     event = create(:event)
-    create(:event_participation, event: event, user: event_owner)
+    create(:event_participation, event: event)
     create(:event_invite, invitee: user, event: event)
 
     login_as user, scope: :user
@@ -86,9 +85,8 @@ feature 'User views invites' do
 
   scenario 'and refuses invite' do
     user = create(:user)
-    event_owner = create(:user)
     event = create(:event)
-    create(:event_participation, event: event, user: event_owner)
+    create(:event_participation, event: event)
     create(:event_invite, invitee: user, event: event)
 
     login_as user, scope: :user

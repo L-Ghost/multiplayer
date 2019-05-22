@@ -3,6 +3,5 @@ FactoryBot.define do
     event
     user
     request_status { :sent }
-    association :event_owner, factory: :user
   end
 end

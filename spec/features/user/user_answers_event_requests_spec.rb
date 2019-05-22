@@ -6,12 +6,8 @@ feature 'User answers event requests' do
     user2 = create(:user)
     user3 = create(:user)
     event = create(:event, user: user1)
-    event_request1 = create(
-      :event_request, event: event, user: user2, event_owner: user1
-    )
-    event_request2 = create(
-      :event_request, event: event, user: user3, event_owner: user1
-    )
+    event_request1 = create(:event_request, event: event, user: user2)
+    event_request2 = create(:event_request, event: event, user: user3)
 
     login_as user1, scope: :user
     visit event_path(event)
@@ -26,7 +22,7 @@ feature 'User answers event requests' do
     user1 = create(:user)
     user2 = create(:user)
     event = create(:event, user: user1)
-    create(:event_request, event: event, user: user2, event_owner: user1)
+    create(:event_request, event: event, user: user2)
 
     login_as user1, scope: :user
     visit event_path(event)
@@ -42,7 +38,7 @@ feature 'User answers event requests' do
     user1 = create(:user)
     user2 = create(:user)
     event = create(:event, user: user1)
-    create(:event_request, event: event, user: user2, event_owner: user1)
+    create(:event_request, event: event, user: user2)
 
     login_as user1, scope: :user
     visit event_path(event)
