@@ -21,12 +21,14 @@ pt-BR:
         subject: 'Você foi convidado para o evento %{event}'
         mailer_message: 'O usuário %{user} te convidou para participar do evento %{event}'
     request:
+      none: 'Não há pedidos para participar deste evento'
       accepted: 'Pedido aceito com sucesso!'
       declined: 'Pedido recusado!'
       sent:
         successful: 'Pedido de participação enviado com sucesso!'
         subject: 'Você solicitou participar do Evento'
         mailer_message: 'Sua solicitação foi enviada ao administrador do Evento'
+    participants: 'Participantes do Evento'
     details: 'Detalhes do Evento'
     new_request: 'Pedir para participar deste evento'
     new_request_sent: 'Seu evento tem uma nova solicitação'
@@ -39,7 +41,7 @@ pt-BR:
     one: 'Participante'
     other: 'Participantes'
   participation:
-    requests: 'Pedidos de participação'
+    requests: 'Pedidos de Participação'
   create:
     event: 'Quero criar um novo Evento'
     amused_event: 'Movimente sua comunidade! Crie um Evento!'
@@ -120,5 +122,6 @@ pt-BR:
     search:
       user:
         q: 'Informe o Email ou Nickname do usuário'
+  you: 'Você'
   submit: 'Enviar'
   back: 'Voltar'

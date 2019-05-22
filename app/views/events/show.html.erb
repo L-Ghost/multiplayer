@@ -11,6 +11,11 @@
 <p><%= @event.total_participants_info %></p>
 <p><%= @event.max_participants_info %></p>
 
+<div>
+  <%= render partial: 'participants', locals: { event: @event } %>
+</div>
+
+<div>
 <% if current_user == @event.user %>
   <%= render partial: 'participation_requests', locals: { requests: @received_requests } %>
   <%= render partial: 'participation_invite_form', locals: { event: @event } %>
@@ -21,3 +26,4 @@
     <%= render partial: 'participation_request_form', locals: { event: @event } %>
   <% end %>
 <% end %>
+</div>

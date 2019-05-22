@@ -1,4 +1,9 @@
 <h2><%= t('participation.requests') %></h2>
+
+<% if requests.count == 0 %>
+  <p><%= t('event.request.none') %></p>
+<% end %>
+
 <% requests.each do |r| %>
   <p>
     <%= r.user.name %>

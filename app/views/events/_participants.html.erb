@@ -1,0 +1,12 @@
+<h2><%= t('event.participants') %></h2>
+
+<% event.participants.each do |p| %>
+  <p>
+    <span>
+      <%= p.nickname %>
+      <% if p == current_user %>
+        <strong>(<%= t('you') %>)</strong>
+      <% end %>
+    </span>
+  </p>
+<% end %>
