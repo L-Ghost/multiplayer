@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @games = Game.last(5)
+    @games = GameDecorator.decorate_collection(Game.last(5))
     @events = EventDecorator.decorate_collection(
       Event.where('event_date >= ?', Time.zone.today).last(5)
     )

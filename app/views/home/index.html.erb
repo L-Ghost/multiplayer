@@ -65,7 +65,7 @@
                 <div class="card-footer">
                   <h5><%= link_to game.name %></h5>
                   <% if !current_user.games.exists?(game.id) %>
-                    <%= link_to t('add.to_my_profile'), add_game_path(game), method: :patch, class: 'btn btn-primary' %>
+                    <%= game.add_to_profile %>
                   <% end %>
                 </div>
               </div>
