@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   belongs_to :user
   belongs_to :game_platform
   has_many :event_participations, dependent: :destroy
+  has_many :event_invites, dependent: :destroy
   has_many :event_requests, dependent: :destroy
   has_many :participants, through: :event_participations, source: :user
 

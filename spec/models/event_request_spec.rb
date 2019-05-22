@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe EventRequest, type: :model do
+  it { should belong_to(:event) }
+  it { should belong_to(:user) }
+
+  it { should define_enum_for(:request_status) }
+
   let(:event_request) { create(:event_request) }
 
   describe '#sent_request' do

@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe GamePlatform, type: :model do
+  it { should belong_to(:game) }
+  it { should belong_to(:platform) }
+
   describe '#game_and_platform' do
     it 'should show names of game and platform' do
       game = create(:game, name: 'Battletoads')

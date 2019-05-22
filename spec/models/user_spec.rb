@@ -3,6 +3,16 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) { create(:user) }
 
+  it { should have_many(:game_users) }
+  it { should have_many(:events) }
+  it { should have_many(:event_participations) }
+  it { should have_many(:sent_invites) }
+  it { should have_many(:received_invites) }
+  it { should have_many(:sent_requests) }
+
+  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:email) }
+
   describe '#future_events' do
     it 'should list future events' do
       event1 = create(:event, user: user, event_date: Time.zone.now + 3.days)

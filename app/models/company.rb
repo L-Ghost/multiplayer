@@ -1,4 +1,6 @@
 class Company < ApplicationRecord
+  has_many :platforms, dependent: :restrict_with_exception
+
   has_one_attached :logo
 
   validates :name, presence: true, uniqueness: true

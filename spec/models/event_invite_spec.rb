@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe EventInvite, type: :model do
+  it { should belong_to(:event) }
+  it { should belong_to(:user) }
+  it { should belong_to(:invitee) }
+
+  it { should define_enum_for(:invite_respond) }
+
   let(:event_invite) { create(:event_invite) }
 
   describe '#sent_invite' do
