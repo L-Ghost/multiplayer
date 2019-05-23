@@ -1,0 +1,39 @@
+<div class="mt-3">
+  <h3><%= t('upcoming.events') %></h3>
+
+  <% if events.any? %>
+    <div class="row">
+
+      <% events.each do |event| %>
+        <div class="card ml-3 mt-3" style="width: 20rem;">
+          <% if event.game_platform.game.photo.attached? %>
+            <div class="card-img">
+              <%= image_tag event.game_platform.game.photo.variant(resize: '300x'), class: '' %>
+            </div>
+          <% end %>
+
+          <div class="card-body">
+            <h4 class="card-title"><%= event.title %></h4>
+            <h6 class="card-subtitle mb-2 text-muted"><%= event.event_type %></h6>
+
+            <% if event.full? %>
+                <%= image_tag('/assets/events/full_attendance.png', title: t('event.full_attendance')) %>
+            <% end %>
+
+            <p><%= event.brief_description %></p>
+            <p><%= event.owner_info %></p>
+            <p><%= event.attendance_info %></p>
+            
+            <%= event.link %>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  <% else %>
+
+    <%= render partial: 'new_event' %>
+
+  <% end %>
+
+</div>

@@ -7,7 +7,7 @@ feature 'User request event participation' do
 
     login_as user, scope: :user
     visit root_path
-    click_on 'Ver detalhes'
+    click_on 'Ver Detalhes'
     click_on 'Pedir para participar deste evento'
 
     expect(page).not_to have_link('Pedir para participar deste evento')
@@ -20,7 +20,7 @@ feature 'User request event participation' do
 
     login_as user, scope: :user
     visit root_path
-    click_on 'Ver detalhes'
+    click_on 'Ver Detalhes'
 
     expect(page).not_to have_link('Pedir para participar deste evento')
   end

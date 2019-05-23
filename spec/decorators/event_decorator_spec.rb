@@ -3,6 +3,31 @@ require 'rails_helper'
 RSpec.describe EventDecorator do
   let(:event) { create(:event).decorate }
 
+  describe '#brief_description' do
+    it 'limits description text to specified character length' do
+      desc = 'Jogar videogame por bastante tempo até chegar de manhã'
+      brief_desc = 'Jogar videogame por bastante tempo até chegar d...'
+      event.description = desc
+
+      expect(event.brief_description.length).to eq(EventDecorator::LENGTH)
+      expect(event.brief_description).to eq(brief_desc)
+    end
+
+    it 'shows full description for small texts' do
+      desc = 'Jogar bastante videogame'
+      event.description = desc
+
+      expect(event.brief_description.length).to eq(24)
+      expect(event.brief_description).to eq(desc)
+    end
+  end
+
+  describe '#owner_info' do
+    it 'shows username of event creator' do
+      expect(event.owner_info).to eq("Criado por: #{event.user.nickname}")
+    end
+  end
+
   describe '#date_info' do
     it 'shows info about event date' do
       dt = Time.zone.now + 4.days
@@ -46,6 +71,19 @@ RSpec.describe EventDecorator do
       create(:event_participation, event: event)
 
       expect(event.attendance_info).to eq('Participantes: 2/4')
+    end
+  end
+
+  describe '#link' do
+    it 'shows link for viewing details of event' do
+      regex = %r{href=\"\/events\/#{event.id}\"}
+      expect(event.link).to match(regex)
+    end
+
+    it 'shows correct event id' do
+      id = event.id + 1
+      regex = %r{href=\"\/events\/#{id}\"}
+      expect(event.link).not_to match(regex)
     end
   end
 

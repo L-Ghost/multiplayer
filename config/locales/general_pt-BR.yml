@@ -29,6 +29,8 @@ pt-BR:
         subject: 'Você solicitou participar do Evento'
         mailer_message: 'Sua solicitação foi enviada ao administrador do Evento'
     participants: 'Participantes do Evento'
+    view: 'Ver Detalhes'
+    created_by: 'Criado por: %{user}'
     details: 'Detalhes do Evento'
     new_request: 'Pedir para participar deste evento'
     new_request_sent: 'Seu evento tem uma nova solicitação'
