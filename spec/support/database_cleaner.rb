@@ -1,3 +1,11 @@
+module RemoveUploadedFiles
+  module_function
+
+  def remove_uploaded_files
+    FileUtils.rm_rf(Rails.root.join('tmp', 'storage'))
+  end
+end
+
 RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
@@ -17,5 +25,9 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
+  end
+
+  config.after(:suite) do
+    RemoveUploadedFiles.remove_uploaded_files
   end
 end
