@@ -41,7 +41,7 @@ class GamesController < ApplicationController
   private
 
   def successfull_save
-    @game.category_games = category_games_params
+    @game.game_categorizations = game_categorizations_params
     @game.game_releases = game_releases_params
     flash[:notice] = "Jogo #{@game.name} cadastrado com sucesso"
     redirect_to new_game_path
@@ -51,8 +51,10 @@ class GamesController < ApplicationController
     params.require(:game).permit(:name, :release_year, :photo)
   end
 
-  def category_games_params
-    CategoryGame.where(id: params[:game][:category_games][:category_games_ids])
+  def game_categorizations_params
+    GameCategorization.where(
+      id: params[:game][:game_categorizations][:game_categorizations_ids]
+    )
   end
 
   def game_releases_params

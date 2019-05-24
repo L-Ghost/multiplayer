@@ -1,7 +1,7 @@
 class Game < ApplicationRecord
   has_one_attached :photo
 
-  has_many :category_games, dependent: :destroy
+  has_many :game_categorizations, dependent: :destroy
   has_many :game_releases, dependent: :destroy
   has_many :game_users, dependent: :destroy
 

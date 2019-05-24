@@ -4,9 +4,9 @@
   <%= f.input :name %>
   <%= f.input :release_year %>
 
-  <%= f.simple_fields_for :category_games do |cg| %>
+  <%= f.simple_fields_for :game_categorizations do |gc| %>
     <h5>Categoria</h5>
-    <%= cg.collection_check_boxes :category_games_ids, @categories, :id, :name,
+    <%= gc.collection_check_boxes :game_categorizations_ids, @categories, :id, :name,
       item_wrapper_class: 'form-check' %>
   <% end %>
 

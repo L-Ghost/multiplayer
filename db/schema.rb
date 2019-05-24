@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_24_183804) do
+ActiveRecord::Schema.define(version: 2019_05_24_192842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,15 +52,6 @@ ActiveRecord::Schema.define(version: 2019_05_24_183804) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "category_games", force: :cascade do |t|
-    t.bigint "category_id"
-    t.bigint "game_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_category_games_on_category_id"
-    t.index ["game_id"], name: "index_category_games_on_game_id"
   end
 
   create_table "cities", force: :cascade do |t|
@@ -123,6 +114,15 @@ ActiveRecord::Schema.define(version: 2019_05_24_183804) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "game_categorizations", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_game_categorizations_on_category_id"
+    t.index ["game_id"], name: "index_game_categorizations_on_game_id"
+  end
+
   create_table "game_releases", force: :cascade do |t|
     t.bigint "game_id"
     t.bigint "platform_id"
@@ -181,8 +181,6 @@ ActiveRecord::Schema.define(version: 2019_05_24_183804) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "category_games", "categories"
-  add_foreign_key "category_games", "games"
   add_foreign_key "cities", "states"
   add_foreign_key "event_invites", "events"
   add_foreign_key "event_invites", "users"
@@ -192,6 +190,8 @@ ActiveRecord::Schema.define(version: 2019_05_24_183804) do
   add_foreign_key "event_requests", "users"
   add_foreign_key "events", "game_releases"
   add_foreign_key "events", "users"
+  add_foreign_key "game_categorizations", "categories"
+  add_foreign_key "game_categorizations", "games"
   add_foreign_key "game_releases", "games"
   add_foreign_key "game_releases", "platforms"
   add_foreign_key "game_users", "games"

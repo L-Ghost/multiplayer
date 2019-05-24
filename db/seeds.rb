@@ -113,7 +113,7 @@ if !Game.find_by(name: 'Super Mario Kart')
   game.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'mariokart.jpg')), filename: 'mariokart.jpg')
   game.save
   GameRelease.create(game: game, platform: snes)
-  CategoryGame.create(category: Category.find_by(name: 'Esporte'), game: game)
+  GameCategorization.create(category: Category.find_by(name: 'Esporte'), game: game)
 end
 
 bomberman = Game.find_by(name: 'Super Bomberman')
@@ -122,8 +122,8 @@ if bomberman.nil?
   bomberman.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'bomberman.jpg')), filename: 'bomberman.jpg')
   bomberman.save
   GameRelease.create(game: bomberman, platform: snes)
-  CategoryGame.create(category: Category.find_by(name: 'Ação'), game: bomberman)
-  CategoryGame.create(category: Category.find_by(name: 'Aventura'), game: bomberman)
+  GameCategorization.create(category: Category.find_by(name: 'Ação'), game: bomberman)
+  GameCategorization.create(category: Category.find_by(name: 'Aventura'), game: bomberman)
 end
 
 megaman = Game.find_by(name: 'Mega Man X')
@@ -132,8 +132,8 @@ if megaman.nil?
   megaman.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'megamanx.jpg')), filename: 'megamanx.jpg')
   megaman.save
   GameRelease.create(game: megaman, platform: snes)
-  CategoryGame.create(category: Category.find_by(name: 'Ação'), game: megaman)
-  CategoryGame.create(category: Category.find_by(name: 'Plataforma'), game: megaman)
+  GameCategorization.create(category: Category.find_by(name: 'Ação'), game: megaman)
+  GameCategorization.create(category: Category.find_by(name: 'Plataforma'), game: megaman)
 end
 
 if !Game.find_by(name: 'Streets of Rage')
@@ -141,7 +141,7 @@ if !Game.find_by(name: 'Streets of Rage')
   game.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'streetsofrage.jpg')), filename: 'streetsofrage.jpg')
   game.save
   GameRelease.create(game: game, platform: megadrive)
-  CategoryGame.create(category: Category.find_by(name: 'Beat \'em Up'), game: game)
+  GameCategorization.create(category: Category.find_by(name: 'Beat \'em Up'), game: game)
 end
 
 sonic = Game.find_by(name: 'Sonic the Hedgehog')
@@ -150,7 +150,7 @@ if sonic.nil?
   sonic.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'sonic.jpg')), filename: 'sonic.jpg')
   sonic.save
   GameRelease.create(game: sonic, platform: megadrive)
-  CategoryGame.create(category: Category.find_by(name: 'Plataforma'), game: sonic)
+  GameCategorization.create(category: Category.find_by(name: 'Plataforma'), game: sonic)
 end
 
 dark_souls = Game.find_by(name: 'Dark Souls')
@@ -161,9 +161,9 @@ if dark_souls.nil?
   GameRelease.create(game: dark_souls, platform: playstation4)
   GameRelease.create(game: dark_souls, platform: Platform.find_by(name: 'X Box One'))
   GameRelease.create(game: dark_souls, platform: Platform.find_by(name: 'Nintendo Switch'))
-  CategoryGame.create(category: Category.find_by(name: 'Ação'), game: dark_souls)
-  CategoryGame.create(category: Category.find_by(name: 'RPG'), game: dark_souls)
-  CategoryGame.create(category: Category.find_by(name: 'Dungeon Crawl'), game: dark_souls)
+  GameCategorization.create(category: Category.find_by(name: 'Ação'), game: dark_souls)
+  GameCategorization.create(category: Category.find_by(name: 'RPG'), game: dark_souls)
+  GameCategorization.create(category: Category.find_by(name: 'Dungeon Crawl'), game: dark_souls)
 end
 
 today = Time.zone.today

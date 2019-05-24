@@ -1,4 +1,4 @@
-class CategoryGame < ApplicationRecord
+class GameCategorization < ApplicationRecord
   belongs_to :category
   belongs_to :game
 end
