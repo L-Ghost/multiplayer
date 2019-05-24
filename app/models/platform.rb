@@ -1,6 +1,6 @@
 class Platform < ApplicationRecord
   belongs_to :company
-  has_many :game_platforms, dependent: :destroy
+  has_many :game_releases, dependent: :destroy
 
   has_one_attached :logo
 

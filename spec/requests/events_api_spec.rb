@@ -27,10 +27,10 @@ RSpec.describe 'Events API' do
       location = 'Avenida Consolação, 2000'
       platform = create(:platform, name: 'Playstation')
       game = create(:game, name: 'Mega Man Legends')
-      game_platform = create(:game_platform, game: game, platform: platform)
+      game_release = create(:game_release, game: game, platform: platform)
       event = create(
         :event,
-        user: user, game_platform: game_platform, title: title,
+        user: user, game_release: game_release, title: title,
         description: description, event_date: dt, event_location: location
       )
 

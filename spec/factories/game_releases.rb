@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :game_platform do
+  factory :game_release do
     game
     platform
   end

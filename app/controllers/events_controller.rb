@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   def new
     @event = Event.new
-    @game_platforms = current_user.game_platforms
+    @game_releases = current_user.game_releases
   end
 
   def create
@@ -32,7 +32,7 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(
-      :title, :description, :game_platform_id,
+      :title, :description, :game_release_id,
       :event_date, :user_limit, :event_type, :event_location
     )
   end

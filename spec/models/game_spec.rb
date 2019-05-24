@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Game, type: :model do
   it { should have_many(:category_games) }
-  it { should have_many(:game_platforms) }
+  it { should have_many(:game_releases) }
   it { should have_many(:game_users) }
 
   it { should validate_presence_of(:name) }

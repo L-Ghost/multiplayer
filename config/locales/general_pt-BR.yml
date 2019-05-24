@@ -113,7 +113,7 @@ pt-BR:
   form:
     new:
       event:
-        game_platform_id: 'Selecione o Jogo'
+        game_release_id: 'Selecione o Jogo'
         submit: 'Criar Evento'
         presential: 'Presencial'
         online: 'Online'

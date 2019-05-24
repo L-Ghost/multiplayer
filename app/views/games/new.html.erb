@@ -10,9 +10,9 @@
       item_wrapper_class: 'form-check' %>
   <% end %>
 
-  <%= f.simple_fields_for :game_platforms do |gp| %>
+  <%= f.simple_fields_for :game_releases do |gr| %>
     <h5>Plataforma</h5>
-    <%= gp.collection_check_boxes :game_platforms_ids, @platforms, :id, :name,
+    <%= gr.collection_check_boxes :game_releases_ids, @platforms, :id, :name,
       item_wrapper_class: 'form-check' %>
   <% end %>
 

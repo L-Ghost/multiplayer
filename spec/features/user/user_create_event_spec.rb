@@ -7,7 +7,7 @@ feature 'User create Event' do
     user = create(:user)
     game = create(:game, name: 'Mario Kart 8')
     platform = create(:platform, name: 'Nintendo Switch')
-    create(:game_platform, game: game, platform: platform)
+    create(:game_release, game: game, platform: platform)
     create(:game_user, game: game, user: user)
 
     login_as(user, scope: :user)

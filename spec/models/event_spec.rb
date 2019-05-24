@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Event, type: :model do
   it { should belong_to(:user) }
-  it { should belong_to(:game_platform) }
+  it { should belong_to(:game_release) }
   it { should have_many(:event_invites) }
   it { should have_many(:event_requests) }
   it { should have_many(:event_participations) }

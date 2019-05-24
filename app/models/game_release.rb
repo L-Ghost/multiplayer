@@ -1,4 +1,4 @@
-class GamePlatform < ApplicationRecord
+class GameRelease < ApplicationRecord
   belongs_to :game
   belongs_to :platform
 

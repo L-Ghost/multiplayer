@@ -42,7 +42,7 @@ class GamesController < ApplicationController
 
   def successfull_save
     @game.category_games = category_games_params
-    @game.game_platforms = game_platforms_params
+    @game.game_releases = game_releases_params
     flash[:notice] = "Jogo #{@game.name} cadastrado com sucesso"
     redirect_to new_game_path
   end
@@ -55,7 +55,7 @@ class GamesController < ApplicationController
     CategoryGame.where(id: params[:game][:category_games][:category_games_ids])
   end
 
-  def game_platforms_params
-    GamePlatform.where(id: params[:game][:game_platforms][:game_platforms_ids])
+  def game_releases_params
+    GameRelease.where(id: params[:game][:game_releases][:game_releases_ids])
   end
 end

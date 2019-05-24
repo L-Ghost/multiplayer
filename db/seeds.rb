@@ -112,7 +112,7 @@ if !Game.find_by(name: 'Super Mario Kart')
   game = Game.new(name: 'Super Mario Kart', release_year: 1992)
   game.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'mariokart.jpg')), filename: 'mariokart.jpg')
   game.save
-  GamePlatform.create(game: game, platform: snes)
+  GameRelease.create(game: game, platform: snes)
   CategoryGame.create(category: Category.find_by(name: 'Esporte'), game: game)
 end
 
@@ -121,7 +121,7 @@ if bomberman.nil?
   bomberman = Game.new(name: 'Super Bomberman', release_year: 1993)
   bomberman.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'bomberman.jpg')), filename: 'bomberman.jpg')
   bomberman.save
-  GamePlatform.create(game: bomberman, platform: snes)
+  GameRelease.create(game: bomberman, platform: snes)
   CategoryGame.create(category: Category.find_by(name: 'Ação'), game: bomberman)
   CategoryGame.create(category: Category.find_by(name: 'Aventura'), game: bomberman)
 end
@@ -131,7 +131,7 @@ if megaman.nil?
   megaman = Game.new(name: 'Mega Man X', release_year: 1994)
   megaman.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'megamanx.jpg')), filename: 'megamanx.jpg')
   megaman.save
-  GamePlatform.create(game: megaman, platform: snes)
+  GameRelease.create(game: megaman, platform: snes)
   CategoryGame.create(category: Category.find_by(name: 'Ação'), game: megaman)
   CategoryGame.create(category: Category.find_by(name: 'Plataforma'), game: megaman)
 end
@@ -140,7 +140,7 @@ if !Game.find_by(name: 'Streets of Rage')
   game = Game.new(name: 'Streets of Rage', release_year: 1991)
   game.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'streetsofrage.jpg')), filename: 'streetsofrage.jpg')
   game.save
-  GamePlatform.create(game: game, platform: megadrive)
+  GameRelease.create(game: game, platform: megadrive)
   CategoryGame.create(category: Category.find_by(name: 'Beat \'em Up'), game: game)
 end
 
@@ -149,7 +149,7 @@ if sonic.nil?
   sonic = Game.new(name: 'Sonic the Hedgehog', release_year: 1991)
   sonic.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'sonic.jpg')), filename: 'sonic.jpg')
   sonic.save
-  GamePlatform.create(game: sonic, platform: megadrive)
+  GameRelease.create(game: sonic, platform: megadrive)
   CategoryGame.create(category: Category.find_by(name: 'Plataforma'), game: sonic)
 end
 
@@ -158,9 +158,9 @@ if dark_souls.nil?
   dark_souls = Game.new(name: 'Dark Souls', release_year: 2011)
   dark_souls.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'darksouls.jpg')), filename: 'darksouls.jpg')
   dark_souls.save
-  GamePlatform.create(game: dark_souls, platform: playstation4)
-  GamePlatform.create(game: dark_souls, platform: Platform.find_by(name: 'X Box One'))
-  GamePlatform.create(game: dark_souls, platform: Platform.find_by(name: 'Nintendo Switch'))
+  GameRelease.create(game: dark_souls, platform: playstation4)
+  GameRelease.create(game: dark_souls, platform: Platform.find_by(name: 'X Box One'))
+  GameRelease.create(game: dark_souls, platform: Platform.find_by(name: 'Nintendo Switch'))
   CategoryGame.create(category: Category.find_by(name: 'Ação'), game: dark_souls)
   CategoryGame.create(category: Category.find_by(name: 'RPG'), game: dark_souls)
   CategoryGame.create(category: Category.find_by(name: 'Dungeon Crawl'), game: dark_souls)
@@ -171,7 +171,7 @@ if !Event.find_by(title: 'Noite difícil com Dark Souls')
   event1 = Event.create(
     user: user1,
     title: 'Noite difícil com Dark Souls',
-    game_platform: GamePlatform.find_by(game: dark_souls, platform: playstation4),
+    game_release: GameRelease.find_by(game: dark_souls, platform: playstation4),
     description: 'Se divertir vendo as outras pessoas sofrendo para completar o game',
     event_date: today + 2.days,
     user_limit: 4,
@@ -185,7 +185,7 @@ if !Event.find_by(title: 'Batalha explosiva de Bomberman')
   event2 = Event.create(
     user: user2,
     title: 'Batalha explosiva de Bomberman',
-    game_platform: GamePlatform.find_by(game: bomberman, platform: snes),
+    game_release: GameRelease.find_by(game: bomberman, platform: snes),
     description: 'Cada perdedor das batalhas vira uma dose de Seleta',
     event_date: today + 3.days,
     user_limit: 5,
@@ -199,7 +199,7 @@ if !Event.find_by(title: 'Speedrun Mega Man X')
   event3 = Event.create(
     user: user3,
     title: 'Speedrun Mega Man X',
-    game_platform: GamePlatform.find_by(game: megaman, platform: snes),
+    game_release: GameRelease.find_by(game: megaman, platform: snes),
     description: 'Observar um jogador muito habilidoso completar este game em tempo recorde',
     event_date: today + 5.days,
     user_limit: 4,
@@ -215,7 +215,7 @@ if !Event.find_by(title: 'Jogar Sonic')
   event4 = Event.create(
     user: user4,
     title: 'Jogar Sonic',
-    game_platform: GamePlatform.find_by(game: sonic, platform: megadrive),
+    game_release: GameRelease.find_by(game: sonic, platform: megadrive),
     description: 'Jogar Sonic e coletar 10 mil argolas, revezando entre os jogadores',
     event_date: today + 1.days,
     user_limit: 4,

@@ -12,15 +12,15 @@ class EventSerializer < ActiveModel::Serializer
 
   def game
     {
-      game_id: object.game_platform.game.id,
-      game_name: object.game_platform.game.name
+      game_id: object.game_release.game.id,
+      game_name: object.game_release.game.name
     }
   end
 
   def platform
     {
-      platform_id: object.game_platform.platform.id,
-      platform_name: object.game_platform.platform.name
+      platform_id: object.game_release.platform.id,
+      platform_name: object.game_release.platform.name
     }
   end
 end

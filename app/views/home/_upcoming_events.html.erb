@@ -6,9 +6,9 @@
 
       <% events.each do |event| %>
         <div class="card ml-3 mt-3" style="width: 20rem;">
-          <% if event.game_platform.game.photo.attached? %>
+          <% if event.game_release.game.photo.attached? %>
             <div class="card-img">
-              <%= image_tag event.game_platform.game.photo.variant(resize: '300x'), class: '' %>
+              <%= image_tag event.game_release.game.photo.variant(resize: '300x'), class: '' %>
             </div>
           <% end %>
 
@@ -17,7 +17,7 @@
             <h6 class="card-subtitle mb-2 text-muted"><%= event.event_type %></h6>
 
             <% if event.full? %>
-                <%= image_tag('/assets/events/full_attendance.png', title: t('event.full_attendance')) %>
+              <%= image_tag('/assets/events/full_attendance.png', title: t('event.full_attendance')) %>
             <% end %>
 
             <p><%= event.brief_description %></p>

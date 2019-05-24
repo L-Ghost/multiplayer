@@ -1,7 +1,7 @@
 
 <%= simple_form_for @event do |f| %>
   <%= f.input :title %>
-  <%= f.input :game_platform_id, collection: @game_platforms, label_method: :game_and_platform, value_method: :id, label: t('form.new.event.game_platform_id') %>
+  <%= f.input :game_release_id, collection: @game_releases, label_method: :game_and_platform, value_method: :id, label: t('form.new.event.game_release_id') %>
   <%= f.input :description, as: :text %>
   <%= f.input :event_date %>
   <%= f.input :user_limit %>
