@@ -37,11 +37,45 @@ class EventDecorator < ApplicationDecorator
     link_to(I18n.t('event.view'), object)
   end
 
+  def participations_section(current_user)
+    if current_user == object.user
+      render_participation_requests + render_participation_invite_form
+    elsif current_user.sent_request_to_event?(object)
+      render_sent_request
+    else
+      render_participation_request_form
+    end
+  end
+
   def new_request
     link_to(
       I18n.t('event.new_request'),
       event_requests_path(event_id: id),
       method: :post
     )
+  end
+
+  private
+
+  def render_participation_requests
+    render partial: 'events/participation_requests', locals: {
+      requests: event_requests.sent.decorate
+    }
+  end
+
+  def render_participation_invite_form
+    render partial: 'events/participation_invite_form', locals: {
+      event: object
+    }
+  end
+
+  def render_sent_request
+    render inline: "<h4>#{t('event.sent_request')}</h4>"
+  end
+
+  def render_participation_request_form
+    render partial: 'events/participation_request_form', locals: {
+      event: self
+    }
   end
 end

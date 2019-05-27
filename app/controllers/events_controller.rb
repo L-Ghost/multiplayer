@@ -15,10 +15,6 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id]).decorate
-    @received_requests = EventRequest.where(
-      event: @event,
-      request_status: :sent
-    ).decorate
   end
 
   def search

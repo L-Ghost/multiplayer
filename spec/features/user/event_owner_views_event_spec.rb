@@ -2,11 +2,11 @@ require 'rails_helper'
 
 feature 'Event owner views event' do
   let(:user) { create(:user) }
+  let(:event) { create(:event, user: user) }
 
   scenario 'and sees requests' do
     user2 = create(:user)
     user3 = create(:user)
-    event = create(:event, user: user)
     event_request1 = create(:event_request, event: event, user: user2)
     event_request2 = create(:event_request, event: event, user: user3)
 
@@ -20,7 +20,6 @@ feature 'Event owner views event' do
   end
 
   scenario 'and sees event participants' do
-    event = create(:event, user: user)
     ep1 = create(:event_participation, event: event, user: user)
     ep2 = create(:event_participation, event: event)
     ep3 = create(:event_participation, event: event)

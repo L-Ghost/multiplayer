@@ -5,6 +5,8 @@ class EventRequest < ApplicationRecord
   belongs_to :user
   has_one :event_owner, through: :event, source: :user
 
+  scope :sent, -> { where(request_status: :sent) }
+
   def sent_request
     SendNewSentRequestJob.perform_later(id)
   end
