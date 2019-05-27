@@ -39,8 +39,4 @@ class User < ApplicationRecord
   def event_options
     future_events.map { |e| [e.title, e.id] }
   end
-
-  def sent_request_to_event?(event)
-    sent_requests.where(event: event).any?
-  end
 end

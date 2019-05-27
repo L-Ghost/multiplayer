@@ -34,4 +34,37 @@ RSpec.describe Event, type: :model do
       expect(event.full?).to be_falsy
     end
   end
+
+  describe '#owner?' do
+    let(:user) { create(:user) }
+
+    it 'is current user' do
+      event = create(:event, user: user)
+
+      expect(event.owner?(user)).to be_truthy
+    end
+
+    it 'is not current user' do
+      event = create(:event)
+
+      expect(event.owner?(user)).to be_falsy
+    end
+  end
+
+  describe '#requested_by?' do
+    let(:user) { create(:user) }
+
+    it 'current user' do
+      event = create(:event)
+      create(:event_request, event: event, user: user)
+
+      expect(event.requested_by?(user)).to be_truthy
+    end
+
+    it 'not the current user' do
+      event = create(:event)
+
+      expect(event.requested_by?(user)).to be_falsy
+    end
+  end
 end

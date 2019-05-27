@@ -58,19 +58,4 @@ RSpec.describe User, type: :model do
       expect(user.event_options.count).to eq(0)
     end
   end
-
-  describe 'sent_request_to_event?' do
-    it 'has sent a request' do
-      event = create(:event)
-      create(:event_request, event: event, user: user)
-
-      expect(user.sent_request_to_event?(event)).to be_truthy
-    end
-
-    it 'has not sent a request' do
-      event = create(:event)
-
-      expect(user.sent_request_to_event?(event)).to be_falsy
-    end
-  end
 end

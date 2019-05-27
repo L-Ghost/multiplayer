@@ -37,14 +37,12 @@ class EventDecorator < ApplicationDecorator
     link_to(I18n.t('event.view'), object)
   end
 
-  def participations_section(current_user)
-    if current_user == object.user
-      render_participation_requests + render_participation_invite_form
-    elsif current_user.sent_request_to_event?(object)
-      render_sent_request
-    else
-      render_participation_request_form
-    end
+  def participations_block(user)
+    return event_owner_block if object.owner?(user)
+
+    return render_requested_by if object.requested_by?(user)
+
+    render_participation_request_form
   end
 
   def new_request
@@ -56,6 +54,10 @@ class EventDecorator < ApplicationDecorator
   end
 
   private
+
+  def event_owner_block
+    render_participation_requests + render_participation_invite_form
+  end
 
   def render_participation_requests
     render partial: 'events/participation_requests', locals: {
@@ -69,7 +71,7 @@ class EventDecorator < ApplicationDecorator
     }
   end
 
-  def render_sent_request
+  def render_requested_by
     render inline: "<h4>#{t('event.sent_request')}</h4>"
   end
 

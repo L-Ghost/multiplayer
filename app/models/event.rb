@@ -15,4 +15,12 @@ class Event < ApplicationRecord
   def full?
     total_participants == user_limit
   end
+
+  def owner?(user)
+    self.user == user
+  end
+
+  def requested_by?(user)
+    event_requests.where(user: user).any?
+  end
 end
