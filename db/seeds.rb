@@ -2,6 +2,8 @@ if !Admin.find_by(email: 'admin@admin.com')
   Admin.create(email: 'admin@admin.com', password: '12345678')
 end
 
+puts 'Creating Users...'
+
 user1 = User.find_by(email: 'user@user.com')
 if user1.nil?
   user1 = User.create(name: 'user', email: 'user@user.com', password: '123456', nickname: 'fire-user')
@@ -36,6 +38,7 @@ if (!City.find_by(name: 'São Paulo'))
 end
 
 # empresas
+puts 'Creating Companies...'
 
 nintendo = Company.find_by(name: 'Nintendo')
 if nintendo.nil?
@@ -63,6 +66,7 @@ if !Company.find_by(name: 'Microsoft')
 end
 
 # plataformas
+puts 'Creating Platforms...'
 
 snes = Platform.find_by(name: 'Super Nintendo')
 if snes.nil?
@@ -98,6 +102,7 @@ if !Platform.find_by(name: 'X Box One')
 end
 
 # categorias
+puts 'Creating Categories...'
 
 categories = ['RPG', 'FPS', 'Plataforma', 'Esporte', 'Aventura', 'Ação', 'Beat \'em Up', 'Dungeon Crawl']
 categories.each do |name|
@@ -106,7 +111,8 @@ categories.each do |name|
   end
 end
 
-# todo games
+# games
+puts 'Creating Games...'
 
 if !Game.find_by(name: 'Super Mario Kart')
   game = Game.new(name: 'Super Mario Kart', release_year: 1992)
@@ -165,6 +171,9 @@ if dark_souls.nil?
   GameCategorization.create(category: Category.find_by(name: 'RPG'), game: dark_souls)
   GameCategorization.create(category: Category.find_by(name: 'Dungeon Crawl'), game: dark_souls)
 end
+
+# events
+puts 'Creating Events...'
 
 today = Time.zone.today
 if !Event.find_by(title: 'Noite difícil com Dark Souls')
@@ -227,3 +236,5 @@ if !Event.find_by(title: 'Jogar Sonic')
   EventInvite.create(event: event4, user: user4, invitee: user2)
   EventInvite.create(event: event4, user: user4, invitee: user3)
 end
+
+puts 'Done!'
