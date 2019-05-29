@@ -38,11 +38,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def participations_block(user)
-    return event_owner_block if object.owner?(user)
-
-    return render_requested_by if object.requested_by?(user)
-
-    render_participation_request_form
+    object.owner?(user) ? event_owner_block : common_user_block(user)
   end
 
   def new_request
@@ -71,8 +67,22 @@ class EventDecorator < ApplicationDecorator
     }
   end
 
+  def common_user_block(user)
+    return render_requested_by if object.requested_by?(user)
+
+    return render_invite_for(user) if object.invite_for?(user)
+
+    render_participation_request_form
+  end
+
   def render_requested_by
     render inline: "<h4>#{t('event.sent_request')}</h4>"
+  end
+
+  def render_invite_for(user)
+    render partial: 'events/participation_invite', locals: {
+      invite: event_invites.where(invitee: user).first.decorate
+    }
   end
 
   def render_participation_request_form

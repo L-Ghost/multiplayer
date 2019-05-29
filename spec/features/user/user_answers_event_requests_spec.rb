@@ -14,8 +14,8 @@ feature 'User answers event requests' do
 
     expect(page).to have_content(event_request1.user.name)
     expect(page).to have_content(event_request2.user.name)
-    expect(page).to have_link('Aceitar', count: 2)
-    expect(page).to have_link('Recusar', count: 2)
+    expect(page).to have_button('Aceitar', count: 2)
+    expect(page).to have_button('Recusar', count: 2)
   end
 
   scenario 'and accepts request' do

@@ -67,4 +67,21 @@ RSpec.describe Event, type: :model do
       expect(event.requested_by?(user)).to be_falsy
     end
   end
+
+  describe '#invite_for?' do
+    let(:user) { create(:user) }
+
+    it 'current user' do
+      event = create(:event)
+      create(:event_invite, event: event, invitee: user)
+
+      expect(event.invite_for?(user)).to be_truthy
+    end
+
+    it 'not the current user' do
+      event = create(:event)
+
+      expect(event.invite_for?(user)).to be_falsy
+    end
+  end
 end

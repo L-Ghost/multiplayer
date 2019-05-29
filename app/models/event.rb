@@ -23,4 +23,8 @@ class Event < ApplicationRecord
   def requested_by?(user)
     event_requests.where(user: user).any?
   end
+
+  def invite_for?(user)
+    event_invites.where(invitee: user).any?
+  end
 end

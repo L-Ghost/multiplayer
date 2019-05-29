@@ -3,12 +3,12 @@ class EventRequestDecorator < ApplicationDecorator
   delegate_all
   decorates_association :event
 
-  def accept_link
-    link_to I18n.t(:accept), accept_event_request_path(object), method: :put
+  def accept_button
+    button_to I18n.t(:accept), accept_event_request_path(object), method: :put
   end
 
-  def decline_link
-    link_to I18n.t(:decline), decline_event_request_path(object), method: :put
+  def decline_button
+    button_to I18n.t(:decline), decline_event_request_path(object), method: :put
   end
 
   def sent_subject

@@ -16,7 +16,12 @@ Rails.application.routes.draw do
     collection {get :search}
   end
 
-  resources :event_invites, only: [:create]
+  resources :event_invites, only: [:create] do
+    member do
+      put :accept
+      put :decline
+    end
+  end
 
   resources :event_requests, only: [:create] do
     member do

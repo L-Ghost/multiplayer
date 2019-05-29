@@ -1,6 +1,15 @@
 class EventInviteDecorator < ApplicationDecorator
+  include Draper::LazyHelpers
   delegate_all
   decorates_association :event
+
+  def accept_button
+    button_to I18n.t(:accept), accept_event_invite_path(object), method: :put
+  end
+
+  def decline_button
+    button_to I18n.t(:decline), decline_event_invite_path(object), method: :put
+  end
 
   def sent_subject
     I18n.t(

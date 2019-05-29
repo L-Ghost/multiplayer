@@ -18,6 +18,7 @@ pt-BR:
         subject: 'Você convidou o usuário %{user} para o evento %{event}'
         mailer_message: 'Foi enviado um email ao usuário com mais detalhes sobre o evento'
       received:
+        from: 'Você foi convidado para este evento por %{nickname}'
         subject: 'Você foi convidado para o evento %{event}'
         mailer_message: 'O usuário %{user} te convidou para participar do evento %{event}'
     request:
