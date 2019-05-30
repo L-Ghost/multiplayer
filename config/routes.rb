@@ -43,9 +43,6 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[edit update show] do
     collection {get :search}
-    member do
-      post :invite
-    end
   end
 
   namespace :api, defaults: { format: 'json' } do

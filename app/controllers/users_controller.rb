@@ -21,17 +21,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def invite
-    @user = User.find(params[:id])
-    @event = Event.find(params[:event_id])
-    @event_invite = EventInvite.create(
-      event: @event, user: current_user, invitee: @user
-    )
-    @event_invite.sent!
-    flash[:notice] = "Convite enviado para o usuário #{@user.nickname}"
-    redirect_to @user
-  end
-
   def search
     search_param = params[:search]
     return if search_param.blank?

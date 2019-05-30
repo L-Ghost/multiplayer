@@ -1,13 +1,13 @@
 class EventInvitesController < ApplicationController
   def create
     @event = Event.find(params[:event_id])
-    @invited_user = User.find_by('nickname = :q OR email = :q', q: params[:q])
+    @invited_user = find_user
 
     @message = I18n.t('not.found.user_email')
     invite_user_procedure unless @invited_user.nil?
 
     flash[:notice] = @message
-    redirect_to @event
+    redirect_to params[:user_id].nil? ? @event : @invited_user
   end
 
   def received_invites
@@ -31,6 +31,14 @@ class EventInvitesController < ApplicationController
   end
 
   private
+
+  def find_user
+    if params[:user_id].nil?
+      return User.find_by('nickname = :q OR email = :q', q: params[:q])
+    end
+
+    User.find(params[:user_id])
+  end
 
   def invite_user_procedure
     if invite_exists?
