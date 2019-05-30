@@ -10,18 +10,24 @@ class EventInvitesController < ApplicationController
     redirect_to @event
   end
 
+  def received_invites
+    @received_invites = EventInviteDecorator.decorate_collection(
+      EventInvite.where(invitee: current_user).sent
+    )
+  end
+
   def accept
     @event_invite = EventInvite.find(params[:id])
     approve_invite
     flash[:notice] = I18n.t('event.invite.accepted')
-    redirect_to refered_by_event? ? current_event : received_invites
+    redirect_to refered_by_event? ? current_event : my_invites
   end
 
   def decline
     @event_invite = EventInvite.find(params[:id])
     @event_invite.declined!
     flash[:notice] = I18n.t('event.invite.declined')
-    redirect_to refered_by_event? ? current_event : received_invites
+    redirect_to refered_by_event? ? current_event : my_invites
   end
 
   private
@@ -49,6 +55,7 @@ class EventInvitesController < ApplicationController
       user: current_user,
       invitee: @invited_user
     )
+    @event_invite.sent!
   end
 
   def send_emails
@@ -74,7 +81,7 @@ class EventInvitesController < ApplicationController
     event_path(@event_invite.event)
   end
 
-  def received_invites
-    received_invites_user_path(@event_invite.invitee)
+  def my_invites
+    received_invites_event_invites_path
   end
 end

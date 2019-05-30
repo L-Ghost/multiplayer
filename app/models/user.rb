@@ -15,7 +15,7 @@ class User < ApplicationRecord
            foreign_key: :user_id,
            dependent: :destroy,
            inverse_of: :user
-  has_many :received_invites, -> { where(invite_respond: :sent) },
+  has_many :received_invites, -> { where(invite_status: :sent) },
            class_name: 'EventInvite',
            foreign_key: :invitee_id,
            dependent: :destroy,

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
 
   resources :event_invites, only: [:create] do
+    collection {get :received_invites}
     member do
       put :accept
       put :decline
@@ -42,9 +43,7 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[edit update show] do
     collection {get :search}
-    
     member do
-      get :received_invites
       post :invite
     end
   end

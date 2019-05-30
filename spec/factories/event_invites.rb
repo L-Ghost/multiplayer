@@ -3,10 +3,10 @@ FactoryBot.define do
     event
     user
     association :invitee, factory: :user
-    invite_respond { :sent }
+    invite_status { :sent }
 
     trait :approved do
-      invite_respond { :approved }
+      invite_status { :approved }
     end
   end
 end

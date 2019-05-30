@@ -10,7 +10,7 @@ feature 'User answers event invites' do
       ep = create(:event_participation, event: event)
 
       login_as user, scope: :user
-      visit received_invites_user_path(user)
+      visit received_invites_event_invites_path
       click_button 'Aceitar'
 
       expect(page).not_to have_link('Aceitar')
@@ -25,7 +25,7 @@ feature 'User answers event invites' do
       ep = create(:event_participation, event: event)
 
       login_as user, scope: :user
-      visit received_invites_user_path(user)
+      visit received_invites_event_invites_path
       click_button 'Recusar'
 
       expect(page).not_to have_link('Aceitar')
