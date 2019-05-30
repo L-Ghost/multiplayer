@@ -53,6 +53,8 @@ feature 'User views event' do
       expect(page).to have_content(user.nickname)
       expect(page).to have_content(ep2.user.nickname)
       expect(page).to have_content(ep3.user.nickname)
+      expect(page).not_to have_link('Pedir para participar deste evento')
+      expect(page).to have_content('Você está participando do evento')
     end
 
     scenario 'without participating' do
@@ -66,6 +68,7 @@ feature 'User views event' do
       expect(page).not_to have_content(user.nickname)
       expect(page).to have_content(ep1.user.nickname)
       expect(page).to have_content(ep2.user.nickname)
+      expect(page).to have_link('Pedir para participar deste evento')
     end
   end
 

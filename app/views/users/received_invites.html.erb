@@ -5,8 +5,8 @@
   <% @received_invites.each do |invite| %>
     <p>
       <%= link_to invite.event.title %>
-      <%= link_to 'Aceitar', accept_invite_user_path(invite), method: :post %>
-      <%= link_to 'Recusar', decline_invite_user_path(invite), method: :post %>
+      <%= invite.accept_button %>
+      <%= invite.decline_button %>
     </p>
   <% end %>
 

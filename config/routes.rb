@@ -45,8 +45,6 @@ Rails.application.routes.draw do
     
     member do
       get :received_invites
-      post :accept_invite
-      post :decline_invite
       post :invite
     end
   end

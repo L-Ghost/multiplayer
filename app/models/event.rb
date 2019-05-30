@@ -25,6 +25,10 @@ class Event < ApplicationRecord
   end
 
   def invite_for?(user)
-    event_invites.where(invitee: user).any?
+    event_invites.where(invitee: user, invite_respond: :sent).any?
+  end
+
+  def participant?(user)
+    event_participations.where(user: user).any?
   end
 end

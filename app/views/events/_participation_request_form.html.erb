@@ -1,6 +1,8 @@
 <p>
-  <% if (event.full?) %>
+  <% if event.full? %>
     <%= t('event.full_attendance') %>
+  <% elsif event.participant?(user) %>
+    <%= t('event.participating') %>
   <% else %>
     <%= event.new_request %>
   <% end %>

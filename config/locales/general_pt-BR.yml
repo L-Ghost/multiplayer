@@ -13,6 +13,8 @@ pt-BR:
     invite:
       already_sent: 'Este usuário já foi convidado anteriormente'
       await_response: 'Aguarde a resposta do usuário'
+      accepted: 'Convite aceito com sucesso!'
+      declined: 'Convite recusado!'
       sent:
         nickname: 'Convite enviado para o usuário %{nickname}'
         subject: 'Você convidou o usuário %{user} para o evento %{event}'
@@ -30,6 +32,7 @@ pt-BR:
         subject: 'Você solicitou participar do Evento'
         mailer_message: 'Sua solicitação foi enviada ao administrador do Evento'
     participants: 'Participantes do Evento'
+    participating: 'Você está participando do evento'
     view: 'Ver Detalhes'
     created_by: 'Criado por: %{user}'
     details: 'Detalhes do Evento'

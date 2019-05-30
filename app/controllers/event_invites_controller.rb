@@ -10,6 +10,20 @@ class EventInvitesController < ApplicationController
     redirect_to @event
   end
 
+  def accept
+    @event_invite = EventInvite.find(params[:id])
+    approve_invite
+    flash[:notice] = I18n.t('event.invite.accepted')
+    redirect_to refered_by_event? ? current_event : received_invites
+  end
+
+  def decline
+    @event_invite = EventInvite.find(params[:id])
+    @event_invite.declined!
+    flash[:notice] = I18n.t('event.invite.declined')
+    redirect_to refered_by_event? ? current_event : received_invites
+  end
+
   private
 
   def invite_user_procedure
@@ -44,5 +58,23 @@ class EventInvitesController < ApplicationController
 
   def invited_user_message
     I18n.t('event.invite.sent.nickname', nickname: @invited_user.nickname)
+  end
+
+  def approve_invite
+    @event_invite.approved!
+    EventParticipation.create(event: @event_invite.event, user: current_user)
+  end
+
+  def refered_by_event?
+    referer_path = URI(request.referer).path
+    referer_path == event_path(@event_invite.event)
+  end
+
+  def current_event
+    event_path(@event_invite.event)
+  end
+
+  def received_invites
+    received_invites_user_path(@event_invite.invitee)
   end
 end

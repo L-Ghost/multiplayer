@@ -72,7 +72,7 @@ class EventDecorator < ApplicationDecorator
 
     return render_invite_for(user) if object.invite_for?(user)
 
-    render_participation_request_form
+    render_participation_request_form(user)
   end
 
   def render_requested_by
@@ -81,13 +81,13 @@ class EventDecorator < ApplicationDecorator
 
   def render_invite_for(user)
     render partial: 'events/participation_invite', locals: {
-      invite: event_invites.where(invitee: user).first.decorate
+      invite: event_invites.where(invitee: user).last.decorate
     }
   end
 
-  def render_participation_request_form
+  def render_participation_request_form(user)
     render partial: 'events/participation_request_form', locals: {
-      event: self
+      event: self, user: user
     }
   end
 end

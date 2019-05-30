@@ -216,8 +216,8 @@ if !Event.find_by(title: 'Speedrun Mega Man X')
     event_location: 'Rua Barra Funda, 500'
   )
   EventParticipation.create(event: event3, user: user3)
-  EventInvite.create(event: event3, user: user3, invitee: user1)
-  EventInvite.create(event: event3, user: user3, invitee: user2)
+  EventInvite.create(event: event3, user: user3, invitee: user1, invite_respond: :sent)
+  EventInvite.create(event: event3, user: user3, invitee: user2, invite_respond: :sent)
 end
 
 if !Event.find_by(title: 'Jogar Sonic')
@@ -232,9 +232,9 @@ if !Event.find_by(title: 'Jogar Sonic')
     event_location: 'Rua Domingos de Morais, 2200'
   )
   EventParticipation.create(event: event4, user: user4)
-  EventInvite.create(event: event4, user: user4, invitee: user1)
-  EventInvite.create(event: event4, user: user4, invitee: user2)
-  EventInvite.create(event: event4, user: user4, invitee: user3)
+  EventInvite.create(event: event4, user: user4, invitee: user1, invite_respond: :sent)
+  EventInvite.create(event: event4, user: user4, invitee: user2, invite_respond: :sent)
+  EventInvite.create(event: event4, user: user4, invitee: user3, invite_respond: :sent)
 end
 
 puts 'Done!'

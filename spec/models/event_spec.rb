@@ -84,4 +84,19 @@ RSpec.describe Event, type: :model do
       expect(event.invite_for?(user)).to be_falsy
     end
   end
+
+  describe '#participant?' do
+    let(:user) { create(:user) }
+    let(:event) { create(:event) }
+
+    it 'is participating' do
+      create(:event_participation, event: event, user: user)
+
+      expect(event.participant?(user)).to be_truthy
+    end
+
+    it 'is not participating' do
+      expect(event.participant?(user)).to be_falsy
+    end
+  end
 end

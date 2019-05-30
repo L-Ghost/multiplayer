@@ -30,24 +30,9 @@ class UsersController < ApplicationController
   end
 
   def received_invites
-    @received_invites = EventInvite.where(
-      invitee: current_user, invite_respond: nil
+    @received_invites = EventInviteDecorator.decorate_collection(
+      EventInvite.where(invitee: current_user).sent
     )
-  end
-
-  def accept_invite
-    @invite = EventInvite.find(params[:id])
-    @invite.approved!
-    EventParticipation.create(event: @invite.event, user: current_user)
-    flash[:notice] = 'Convite aceito com sucesso!'
-    redirect_to received_invites_user_path(current_user)
-  end
-
-  def decline_invite
-    @invite = EventInvite.find(params[:id])
-    @invite.declined!
-    flash[:notice] = 'Convite recusado com sucesso!'
-    redirect_to received_invites_user_path(current_user)
   end
 
   def search
