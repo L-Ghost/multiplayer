@@ -20,6 +20,10 @@ pt-BR:
         subject: 'Você convidou o usuário %{user} para o evento %{event}'
         mailer_message: 'Foi enviado um email ao usuário com mais detalhes sobre o evento'
       received:
+        number:
+          zero: 'Você não tem nenhum novo convite'
+          one: 'Você tem %{count} convite de eventos'
+          other: 'Você tem %{count} convites de eventos'
         from: 'Você foi convidado para este evento por %{nickname}'
         subject: 'Você foi convidado para o evento %{event}'
         mailer_message: 'O usuário %{user} te convidou para participar do evento %{event}'
@@ -100,8 +104,6 @@ pt-BR:
     platforms: 'Ver Consoles Cadastrados'
     received_invites: 'Ver convites recebidos'
   my:
-    invites_count: "Você tem %{total} convites de eventos"
-    invites_none: 'Você não tem nenhum novo convite'
     invites: 'Meus Convites'
   last:
     games: 'Últimos Jogos adicionados'

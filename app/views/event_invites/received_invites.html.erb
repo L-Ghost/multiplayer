@@ -10,8 +10,6 @@
     </p>
   <% end %>
 
-  <h3><%= t('my.invites_count', total: @received_invites.count) %></h3>
-
-<% else %>
-  <h3><%= t('my.invites_none') %></h3>    
 <% end %>
+
+<h3><%= t('event.invite.received.number', count: @received_invites.count) %></h3>

@@ -19,7 +19,7 @@
           <%= link_to t('view.received_invites'), received_invites_event_invites_path, class: 'list-group-item list-group-item-action bg-dark text-white' %>
         </span>
         <% if current_user.received_invites.any? %>
-          <%= image_tag('/assets/invites/received_invites.png', title: t('my.invites_count', total: current_user.received_invites.count)) %>
+          <%= image_tag('/assets/invites/received_invites.png', title: t('event.invite.received.number', count: current_user.received_invites.count)) %>
         <% end %>
       </p>
     <% end %>

@@ -36,7 +36,7 @@ feature 'User views invites' do
     expect(page).to have_link(event2.title)
     expect(page).to have_button('Aceitar', count: 1)
     expect(page).to have_button('Recusar', count: 1)
-    expect(page).to have_content('Você tem 1 convites de eventos')
+    expect(page).to have_content('Você tem 1 convite de eventos')
   end
 
   scenario 'but there are no invites' do
@@ -64,6 +64,6 @@ feature 'User views invites' do
 
     expect(page).to have_link('Ver convites recebidos')
     expect(page).to have_css('img[src*="received_invites.png"]')
-    expect(page).to have_css('img[title*="Você tem 1 convites de eventos"]')
+    expect(page).to have_css('img[title*="Você tem 1 convite de evento"]')
   end
 end
