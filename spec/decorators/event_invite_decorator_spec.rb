@@ -1,19 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe EventInviteDecorator do
-  let(:event_invite) { create(:event_invite).decorate }
+  let(:event_invite) { build(:event_invite).decorate }
 
-  describe '#accept_button' do
-    it 'shows invite acceptance button' do
-      regex = %r{action=\"\/event_invites\/#{event_invite.id}\/accept\"}
-      expect(event_invite.accept_button).to match(regex)
+  context 'links' do
+    let(:event_invite) { create(:event_invite).decorate }
+
+    describe '#accept_button' do
+      it 'shows invite acceptance button' do
+        regex = %r{action=\"\/event_invites\/#{event_invite.id}\/accept\"}
+        expect(event_invite.accept_button).to match(regex)
+      end
     end
-  end
 
-  describe '#decline_button' do
-    it 'shows invite declination button' do
-      regex = %r{action=\"\/event_invites\/#{event_invite.id}\/decline\"}
-      expect(event_invite.decline_button).to match(regex)
+    describe '#decline_button' do
+      it 'shows invite declination button' do
+        regex = %r{action=\"\/event_invites\/#{event_invite.id}\/decline\"}
+        expect(event_invite.decline_button).to match(regex)
+      end
     end
   end
 

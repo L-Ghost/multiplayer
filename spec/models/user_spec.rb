@@ -53,7 +53,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'should not list event options if user has no events' do
-      create(:event) # not from tested user
+      create(:event)
 
       expect(user.event_options.count).to eq(0)
     end

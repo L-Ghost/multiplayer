@@ -17,7 +17,7 @@ RSpec.describe EventInviteMailer, type: :mailer do
 
     it 'renders the body' do
       event = event_invite.event
-      dt = event.event_date
+      time = event.event_date
       mail = EventInviteMailer.sent_invite(event_invite.id)
 
       msg = 'Foi enviado um email ao usuário com mais detalhes sobre o evento'
@@ -26,7 +26,7 @@ RSpec.describe EventInviteMailer, type: :mailer do
       expect(mail.body).to include(msg)
       expect(mail.body).to include(msg2)
       expect(mail.body).to include('Detalhes do Evento')
-      expect(mail.body).to include("Data: #{dt.strftime('%d/%m/%Y')}")
+      expect(mail.body).to include("Data: #{time.strftime('%d/%m/%Y')}")
       expect(mail.body).to include("Local: #{event.event_location}")
     end
   end

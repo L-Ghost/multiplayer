@@ -3,24 +3,20 @@ require 'rails_helper'
 RSpec.describe 'Games API' do
   describe 'list games' do
     it 'should list all games' do
-      create(:game, name: 'God of War', release_year: 2018)
-      create(:game, name: 'Life is Strange', release_year: 2018)
+      create(:game, name: 'God of War')
+      create(:game, name: 'Life is Strange')
 
-      # chamada para API
       get '/api/v1/games'
-
       result = JSON.parse(response.body)
-      # expectativas
-      expect(result.count).to eq 2
 
-      # expect(result.first['title']).to eq 'Feijoada'
+      expect(result.count).to eq 2
       expect(response.status).to eq 200
       expect(response.body).to include 'God of War'
       expect(response.body).to include 'Life is Strange'
     end
 
     it 'should delete a game' do
-      game = create(:game, name: 'God of War', release_year: 2018)
+      game = create(:game, name: 'God of War')
 
       delete '/api/v1/games/' + game.id.to_s
 

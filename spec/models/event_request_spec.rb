@@ -6,7 +6,7 @@ RSpec.describe EventRequest, type: :model do
 
   it { should define_enum_for(:request_status) }
 
-  let(:event_request) { create(:event_request) }
+  let(:event_request) { build(:event_request) }
 
   describe '#sent_request' do
     it 'enqueues sent request email' do

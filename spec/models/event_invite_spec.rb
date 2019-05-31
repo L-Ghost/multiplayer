@@ -7,7 +7,7 @@ RSpec.describe EventInvite, type: :model do
 
   it { should define_enum_for(:invite_status) }
 
-  let(:event_invite) { create(:event_invite) }
+  let(:event_invite) { build(:event_invite) }
 
   describe '#sent_invite' do
     it 'enqueues sent invite email' do

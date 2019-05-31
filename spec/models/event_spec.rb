@@ -10,42 +10,46 @@ RSpec.describe Event, type: :model do
   it { should define_enum_for(:event_type) }
 
   describe '#total_participants' do
+    let(:event) { create(:event) }
+
     it 'counts number of participants' do
-      event = create(:event)
-      create(:event_participation, event: event)
-      create(:event_participation, event: event)
+      create_list(:event_participation, 2, event: event)
 
       expect(event.total_participants).to eq(2)
+    end
+
+    it 'count results in zero' do
+      expect(event.total_participants).to eq(0)
     end
   end
 
   describe '#full?' do
     it 'is full' do
       event = create(:event, user_limit: 5)
-      5.times { create(:event_participation, event: event) }
+      create_list(:event_participation, 5, event: event)
 
       expect(event.full?).to be_truthy
     end
 
     it 'is not full' do
       event = create(:event, user_limit: 5)
-      3.times { create(:event_participation, event: event) }
+      create_list(:event_participation, 3, event: event)
 
       expect(event.full?).to be_falsy
     end
   end
 
   describe '#owner?' do
-    let(:user) { create(:user) }
+    let(:user) { build(:user) }
 
     it 'is current user' do
-      event = create(:event, user: user)
+      event = build(:event, user: user)
 
       expect(event.owner?(user)).to be_truthy
     end
 
     it 'is not current user' do
-      event = create(:event)
+      event = build(:event)
 
       expect(event.owner?(user)).to be_falsy
     end

@@ -1,19 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe EventRequestDecorator do
-  let(:event_request) { create(:event_request).decorate }
+  let(:event_request) { build(:event_request).decorate }
 
-  describe '#accept_button' do
-    it 'shows request acceptance button' do
-      regex = %r{action=\"\/event_requests\/#{event_request.id}\/accept\"}
-      expect(event_request.accept_button).to match(regex)
+  context 'links' do
+    let(:event_request) { create(:event_request).decorate }
+    describe '#accept_button' do
+      it 'shows request acceptance button' do
+        regex = %r{action=\"\/event_requests\/#{event_request.id}\/accept\"}
+        expect(event_request.accept_button).to match(regex)
+      end
     end
-  end
 
-  describe '#decline_button' do
-    it 'shows request declination button' do
-      regex = %r{action=\"\/event_requests\/#{event_request.id}\/decline\"}
-      expect(event_request.decline_button).to match(regex)
+    describe '#decline_button' do
+      it 'shows request declination button' do
+        regex = %r{action=\"\/event_requests\/#{event_request.id}\/decline\"}
+        expect(event_request.decline_button).to match(regex)
+      end
     end
   end
 

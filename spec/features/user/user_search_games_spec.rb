@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 feature 'User search games' do
+  let(:user) { create(:user) }
+
   scenario 'from home page' do
-    user = create(:user)
     mt = create(:game, name: 'Mario Tennis Aces')
     mg = create(:game, name: 'Mario Golf 64')
     mk = create(:game, name: 'Mario Kart Super Circuit')
@@ -23,7 +24,6 @@ feature 'User search games' do
   end
 
   scenario 'from its own page' do
-    user = create(:user)
     oa = create(:game, name: 'Zelda Oracle of Ages')
     os = create(:game, name: 'Zelda Oracle of Seasons')
     mz = create(:game, name: 'Mega Man Zero 2')
@@ -42,7 +42,6 @@ feature 'User search games' do
   end
 
   scenario 'and finds no results' do
-    user = create(:user)
     cs = create(:game, name: 'Castlevania')
 
     login_as(user, scope: :user)
@@ -57,7 +56,6 @@ feature 'User search games' do
   end
 
   scenario 'only after clicking on search buton' do
-    user = create(:user)
     cs = create(:game, name: 'Castlevania')
 
     login_as(user, scope: :user)

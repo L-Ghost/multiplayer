@@ -16,7 +16,7 @@ RSpec.describe EventRequestMailer, type: :mailer do
 
     it 'renders the body' do
       event = event_request.event
-      dt = event.event_date
+      time = event.event_date
       mail = EventRequestMailer.sent_request(event_request.id)
 
       msg = 'Sua solicitação foi enviada ao administrador do Evento'
@@ -25,7 +25,7 @@ RSpec.describe EventRequestMailer, type: :mailer do
       expect(mail.body).to include(msg)
       expect(mail.body).to include(msg2)
       expect(mail.body).to include('Detalhes do Evento')
-      expect(mail.body).to include("Data: #{dt.strftime('%d/%m/%Y')}")
+      expect(mail.body).to include("Data: #{time.strftime('%d/%m/%Y')}")
       expect(mail.body).to include("Local: #{event.event_location}")
     end
   end
