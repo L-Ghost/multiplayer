@@ -1,8 +1,7 @@
 class EventRequestsController < ApplicationController
   def create
     @event = Event.find(params[:event_id])
-    create_event_request
-    send_emails
+    EventRequestService.create_request(@event, current_user)
     flash[:notice] = I18n.t('event.request.sent.successful')
     redirect_to event_path(@event)
   end
@@ -20,16 +19,6 @@ class EventRequestsController < ApplicationController
   end
 
   private
-
-  def create_event_request
-    @event_request = EventRequest.create(event: @event, user: current_user)
-    @event_request.sent!
-  end
-
-  def send_emails
-    @event_request.sent_request
-    @event_request.received_request
-  end
 
   def approve_request
     @event_request = EventRequest.find(params[:id])
