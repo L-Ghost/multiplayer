@@ -1,6 +1,7 @@
 class EventInvitesController < ApplicationController
   def create
     @event = Event.find(params[:event_id])
+
     begin
       @invited_user = EventInviteService.find_user(params)
     rescue ActiveRecord::RecordNotFound
@@ -8,9 +9,7 @@ class EventInvitesController < ApplicationController
       return redirect_to @event
     end
 
-    flash[:notice] = EventInviteService.invite_user_procedure(
-      @event, current_user, @invited_user
-    )
+    flash[:notice] = invite_service
     redirect_to params[:user_id].nil? ? @event : @invited_user
   end
 
@@ -22,23 +21,36 @@ class EventInvitesController < ApplicationController
 
   def accept
     @event_invite = EventInvite.find(params[:id])
-    approve_invite
+    EventInviteService.approve_invite(@event_invite)
     flash[:notice] = I18n.t('event.invite.accepted')
-    redirect_to refered_by_event? ? current_event : my_invites
+    redirect_after_response
   end
 
   def decline
     @event_invite = EventInvite.find(params[:id])
     @event_invite.declined!
     flash[:notice] = I18n.t('event.invite.declined')
-    redirect_to refered_by_event? ? current_event : my_invites
+    redirect_after_response
   end
 
   private
 
-  def approve_invite
-    @event_invite.approved!
-    EventParticipation.create(event: @event_invite.event, user: current_user)
+  def invite_service
+    if EventInviteService.invite_user_procedure(
+      @event, current_user, @invited_user
+    )
+      return invited_user_message
+    end
+
+    I18n.t('event.invite.already_sent')
+  end
+
+  def invited_user_message
+    I18n.t('event.invite.sent.nickname', nickname: @invited_user.nickname)
+  end
+
+  def redirect_after_response
+    redirect_to refered_by_event? ? current_event : my_invites
   end
 
   def refered_by_event?

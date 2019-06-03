@@ -9,13 +9,18 @@ module EventInviteService
     end
 
     def invite_user_procedure(event, user, invited_user)
-      if invite_exists?(event, user, invited_user)
-        return I18n.t('event.invite.already_sent')
-      end
+      return false if invite_exists?(event, user, invited_user)
 
       event_invite = create_event_invite(event, user, invited_user)
       send_emails(event_invite)
-      invited_user_message(invited_user)
+      true
+    end
+
+    def approve_invite(event_invite)
+      event_invite.approved!
+      EventParticipation.create(
+        event: event_invite.event, user: event_invite.invitee
+      )
     end
 
     private
@@ -39,10 +44,6 @@ module EventInviteService
     def send_emails(event_invite)
       event_invite.sent_invite
       event_invite.received_invite
-    end
-
-    def invited_user_message(invited_user)
-      I18n.t('event.invite.sent.nickname', nickname: invited_user.nickname)
     end
   end
 end
