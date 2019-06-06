@@ -25,8 +25,7 @@ class UsersController < ApplicationController
     search_param = params[:search]
     return if search_param.blank?
 
-    @users = User.where('email like :search_term OR nickname like :search_term',
-                        search_term: "%#{search_param[:q]}%")
+    @users = UsersQuery.new.find_users(search_param)
   end
 
   private

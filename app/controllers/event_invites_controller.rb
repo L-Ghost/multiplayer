@@ -1,9 +1,9 @@
 class EventInvitesController < ApplicationController
-  def create
-    @event = Event.find(params[:event_id])
+  before_action :fetch_current_event, only: [:create]
 
+  def create
     begin
-      @invited_user = EventInviteService.find_user(params)
+      @invited_user = UsersQuery.new.find_user(params)
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = I18n.t('not.found.user_email')
       return redirect_to @event
@@ -21,7 +21,7 @@ class EventInvitesController < ApplicationController
 
   def accept
     @event_invite = EventInvite.find(params[:id])
-    EventInviteService.approve_invite(@event_invite)
+    EventInvites::Approve.new(@event_invite).call
     flash[:notice] = I18n.t('event.invite.accepted')
     redirect_after_response
   end
@@ -35,14 +35,20 @@ class EventInvitesController < ApplicationController
 
   private
 
+  def fetch_current_event
+    @event = Event.find(params[:event_id])
+  end
+
   def invite_service
-    if EventInviteService.invite_user_procedure(
-      @event, current_user, @invited_user
-    )
+    if EventInvites::Create.new(invite_service_params).call
       return invited_user_message
     end
 
     I18n.t('event.invite.already_sent')
+  end
+
+  def invite_service_params
+    { event: @event, user: current_user, invited_user: @invited_user }
   end
 
   def invited_user_message
