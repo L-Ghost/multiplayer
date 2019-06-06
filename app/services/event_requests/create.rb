@@ -10,6 +10,8 @@ class EventRequests::Create
     send_emails
   end
 
+  private
+
   def send_emails
     @event_request.sent_request
     @event_request.received_request

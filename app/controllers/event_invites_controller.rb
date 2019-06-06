@@ -1,5 +1,6 @@
 class EventInvitesController < ApplicationController
   before_action :fetch_current_event, only: [:create]
+  before_action :fetch_current_invite, only: %i[accept decline]
 
   def create
     begin
@@ -20,14 +21,12 @@ class EventInvitesController < ApplicationController
   end
 
   def accept
-    @event_invite = EventInvite.find(params[:id])
     EventInvites::Approve.new(@event_invite).call
     flash[:notice] = I18n.t('event.invite.accepted')
     redirect_after_response
   end
 
   def decline
-    @event_invite = EventInvite.find(params[:id])
     @event_invite.declined!
     flash[:notice] = I18n.t('event.invite.declined')
     redirect_after_response
@@ -37,6 +36,10 @@ class EventInvitesController < ApplicationController
 
   def fetch_current_event
     @event = Event.find(params[:event_id])
+  end
+
+  def fetch_current_invite
+    @event_invite = EventInvite.find(params[:id])
   end
 
   def invite_service
