@@ -1,8 +1,12 @@
 class HomeController < ApplicationController
+  DEFAULT_LATEST = 5
+
   def index
-    @games = GameDecorator.decorate_collection(Game.last(5))
+    @games = GameDecorator.decorate_collection(
+      GamesQuery.new.latest(HomeController::DEFAULT_LATEST)
+    )
     @events = EventDecorator.decorate_collection(
-      Event.where('event_date >= ?', Time.zone.today).last(5)
+      EventsQuery.new.latest(HomeController::DEFAULT_LATEST)
     )
   end
 end

@@ -21,7 +21,7 @@ class EventsController < ApplicationController
     search_param = params[:search]
     return if search_param.blank?
 
-    @events = Event.where('lower(title) like lower(?)', "%#{search_param[:q]}%")
+    @events = EventsQuery.new.find_events(search_param)
   end
 
   private

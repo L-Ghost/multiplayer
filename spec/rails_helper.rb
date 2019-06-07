@@ -6,6 +6,11 @@ require 'simplecov'
 SimpleCov.start 'rails' do
   add_filter 'jobs'
   add_filter 'cable'
+
+  add_group 'Decorators', 'app/decorators'
+  add_group 'Queries', 'app/queries'
+  add_group 'Serializers', 'app/serializers'
+  add_group 'Services', 'app/services'
 end
 
 require File.expand_path('../../config/environment', __FILE__)
